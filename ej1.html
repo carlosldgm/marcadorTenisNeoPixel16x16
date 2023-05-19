@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Control de Valor</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .textbox {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .button {
+      padding: 10px 20px;
+      font-size: 20px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .button.plus {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .button.minus {
+      background-color: #f44336;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form action="#" method="POST" id="miFormulario">
+      <input type="text" name="valor" class="textbox" id="valor" placeholder="Valor" readonly>
+      <div class="button-container">
+        <button type="button" class="button plus" onclick="actualizarValor('+')">+</button>
+        <button type="button" class="button minus" onclick="actualizarValor('-')">-</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function actualizarValor(operador) {
+      var textbox = document.getElementById('valor');
+      var valorActual = parseInt(textbox.value) || 0;
+
+      if (operador === '+') {
+        valorActual++;
+      } else if (operador === '-') {
+        valorActual--;
+      }
+
+      textbox.value = valorActual;
+
+      // Esperar 1 segundo antes de enviar el formulario
+      setTimeout(function() {
+        document.getElementById('miFormulario').submit();
+      }, 1000);
+    }
+  </script>
+</body>
+</html>

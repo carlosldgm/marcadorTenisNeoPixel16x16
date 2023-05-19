@@ -1,0 +1,11 @@
+-LO QUE FALTA:
+1- [ok]tie brake
+2- [ok]que separe los numeros del marcador de cada jugador y se los envie a la funcion que sabe donde mostrarlos en el tablero dependiendo del jugador
+3- el metodo que actua como un servicio web que devuelve el htlm donde muestra la interfase con la que interactuara el usuario y recibe los botones en los que el usuario hace clic (aumenta punto j1, aumenta punto j2, resta punto j1, resta punto j2, cambia pantalla entre games y sets)
+4- la pantalla de inicio (html) donde se pueda comenzar un partido (puede ser un partido a 3 sets o un game largo mostrando de 1 en 1)
+    debe permitir configurar:
+     -tipo de partido (3 sets o game largo)
+     -que se pueda ingresar un resultado parcial de un partido para continuarlo desde ahi
+     -largo de game largo 7,9,15,21
+5- Efectos:
+    -Que cambie de color cuando un jug
