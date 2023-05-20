@@ -1,6 +1,9 @@
 # import logica_marcador_tenis as lmt
 import logica_marcador_tenis as lmt
 import mapeo_numeros_neopixel16x16 as mn
+import machine
+import neopixel
+import time
 
 marcador = lmt.MarcadorTenis()
 marcador.obtener_estado_jugadores()
@@ -77,18 +80,68 @@ def _devuelve_leds_para_enviar_a_matriz_de_un_game(digitos, jugador,set):
 
 
 def _muestra_points_en_matriz():
+    pixels = neopixel.NeoPixel(machine.Pin(4), 255)
     result = _obtener_marcador_jugadores()
     points_j1 = _obtener_points_jugador("j1")
     points_j2 = _obtener_points_jugador("j2")
-    led_iz_point_j1,led_de_point_j1 = _devuelve_leds_para_enviar_a_matriz_de_un_punto(points_j1,"j1")
-    led_iz_point_j2,led_de_point_j2 = _devuelve_leds_para_enviar_a_matriz_de_un_punto(points_j2,"j2")
-    #aqui habria que encender esos leds, falta parte neopixel
+    if points_j1 != "":
+        led_iz_point_j1,led_de_point_j1 = _devuelve_leds_para_enviar_a_matriz_de_un_punto(points_j1,"j1")
+        #enciende los leds del digito iz del j1
+        for i in led_iz_point_j1:
+            pixels[i] = (0,0,255)
+            pixels.write()
+        for i in led_de_point_j1:
+            pixels[i] = (0,0,255)
+            pixels.write()        
+    if points_j2 != "":
+        led_iz_point_j2,led_de_point_j2 = _devuelve_leds_para_enviar_a_matriz_de_un_punto(points_j2,"j2")
+        #aqui habria que encender esos leds, falta parte neopixel
+        for i in led_iz_point_j2:
+            pixels[i] = (0,255,0)
+            pixels.write()
+            
+        for i in led_de_point_j2:
+            pixels[i] = (0,255,0)
+            pixels.write() 
 
+        
+         
 
 #-----------PRUEBA PARTIDO-------------------
 # resultado inicial
 _muestra_points_en_matriz()
+time.sleep(1)
 
 #el j1 gana un punto
-sumar_punto("j1") #gana un punto el j1
+sumar_punto("j1") #15-0
+_muestra_points_en_matriz()
+
+time.sleep(1)
+#el j2 gana un punto
+sumar_punto("j2") #15-15
+_muestra_points_en_matriz()
+
+time.sleep(1)
+#el j2 gana un punto
+sumar_punto("j2") #15-30
+_muestra_points_en_matriz()
+
+time.sleep(1)
+#el j2 gana un punto
+sumar_punto("j2") #15-40
+_muestra_points_en_matriz()
+
+time.sleep(1)
+#el j1 gana un punto
+sumar_punto("j1") #30-40
+_muestra_points_en_matriz()
+
+time.sleep(1)
+#el j1 gana un punto
+sumar_punto("j1") #40-40
+_muestra_points_en_matriz()
+
+time.sleep(1)
+#el j1 gana un punto
+sumar_punto("j1") #ad-
 _muestra_points_en_matriz()

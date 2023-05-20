@@ -143,4 +143,5 @@ def _test_set_con_tiebrake():
     _j1_gana_point()  # 7-1
 
 
-_test_set_con_tiebrake()
+#_test_set_con_tiebrake()
+_j2_gana_game_con_ventajas()
