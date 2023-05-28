@@ -41,7 +41,7 @@ class MarcadorTenis:
                 print("j1 gana tiebrake")
             else:
                 print("j2 gana tiebrake")
-            print("Tiebrake: " + str(self.tiebreak_points_jugador1) + " - "+str(self.tiebreak_points_jugador2))
+            print("Tiebrake: " + str(self.tiebreak_points_jugador1) + " - " + str(self.tiebreak_points_jugador2))
             self.tiebreak = False
             self.points_jugador1 = 0
             self.points_jugador2 = 0
@@ -133,7 +133,6 @@ class MarcadorTenis:
         print("Games:", self.games_jugador1, self.games_jugador2)
         print()
 
-
     def _hay_ganador_set(self):
         if self.tiebrake_end:
             self.set_actual += 1
@@ -173,7 +172,7 @@ class MarcadorTenis:
             puntos_j2 = self.tiebreak_points_jugador2
 
         result = {
-            "set_actual":{self.set_actual},
+            "set_actual": {self.set_actual},
             "j1": {
                 "points": puntos_j1,
                 "games": self.games_jugador1,
@@ -185,5 +184,5 @@ class MarcadorTenis:
                 "sets": self.sets_jugador2
             }
         }
-        #print(result)
+        # print(result)
         return result

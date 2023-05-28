@@ -4,13 +4,6 @@ import mapeo_numeros_neopixel16x16 as mn
 import time
 import simula_matriz_16x16 as sm
 
-marcador = lmt.MarcadorTenis()
-marcador.obtener_estado_jugadores()
-"""
-#AQUI VA LA LOGICA DEL WEB SERVER
-...
-"""
-
 
 def _obtener_marcador_jugadores():
     result = marcador.obtener_estado_jugadores()
@@ -100,23 +93,24 @@ def _devuelve_leds_para_enviar_a_matriz_de_un_game(digitos, jugador, set):
 
 
 def _muestra_points_en_matriz():
-    #_limpia_matriz()
-    #pixels = neopixel.NeoPixel(machine.Pin(4), 255)
+    # _limpia_matriz()
+    # pixels = neopixel.NeoPixel(machine.Pin(4), 255)
     result = _obtener_marcador_jugadores()
     points_j1 = _obtener_points_jugador("j1")
     points_j2 = _obtener_points_jugador("j2")
 
     if points_j1 != "":
         led_iz_point_j1, led_de_point_j1 = _devuelve_leds_para_enviar_a_matriz_de_un_punto(points_j1, "j1")
-        sm.pinta_puntos_matriz(led_iz_point_j1,led_de_point_j1)
+        sm.pinta_puntos_matriz(led_iz_point_j1, led_de_point_j1)
     if points_j2 != "":
         led_iz_point_j2, led_de_point_j2 = _devuelve_leds_para_enviar_a_matriz_de_un_punto(points_j2, "j2")
         sm.pinta_puntos_matriz(led_iz_point_j2, led_de_point_j2)
-    time.sleep(0.2)
+    # time.sleep(0.2)
+    sm.limpia_matriz()
 
 
 def _muestra_games_en_matriz():
-    #_limpia_matriz()
+    # _limpia_matriz()
 
     result = _obtener_marcador_jugadores()
     games_j1 = _obtener_games_jugador("j1")
@@ -124,11 +118,13 @@ def _muestra_games_en_matriz():
     set_actual = "1"
     led_iz_game_j1, led_de_game_j1 = _devuelve_leds_para_enviar_a_matriz_de_un_game(games_j1, "j1", set_actual)
     # enciende los leds del digito iz del j1
-    sm.pinta_puntos_matriz(led_iz_game_j1,led_de_game_j1)
+    sm.pinta_puntos_matriz(led_iz_game_j1, led_de_game_j1)
+    sm.limpia_matriz()
 
     led_iz_game_j2, led_de_game_j2 = _devuelve_leds_para_enviar_a_matriz_de_un_game(games_j2, "j2", set_actual)
     # aqui habria que encender esos leds, falta parte neopixel
-    sm.pinta_puntos_matriz(led_iz_game_j1,led_de_game_j1)
+    sm.pinta_puntos_matriz(led_iz_game_j1, led_de_game_j1)
+    sm.limpia_matriz()
 
 
 def _limpia_matriz():
@@ -136,6 +132,8 @@ def _limpia_matriz():
 
 
 # -----------PRUEBA PARTIDO-------------------
+marcador = lmt.MarcadorTenis()
+marcador.obtener_estado_jugadores()
 # resultado inicial
 
 _muestra_points_en_matriz()
