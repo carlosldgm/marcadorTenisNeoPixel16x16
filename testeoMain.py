@@ -110,7 +110,6 @@ def _muestra_points_en_matriz():
 
 
 def _muestra_games_en_matriz():
-    # _limpia_matriz()
 
     result = _obtener_marcador_jugadores()
     games_j1 = _obtener_games_jugador("j1")
@@ -119,11 +118,12 @@ def _muestra_games_en_matriz():
     led_iz_game_j1, led_de_game_j1 = _devuelve_leds_para_enviar_a_matriz_de_un_game(games_j1, "j1", set_actual)
     # enciende los leds del digito iz del j1
     sm.pinta_puntos_matriz(led_iz_game_j1, led_de_game_j1)
-    sm.limpia_matriz()
+    #sm.limpia_matriz()
 
     led_iz_game_j2, led_de_game_j2 = _devuelve_leds_para_enviar_a_matriz_de_un_game(games_j2, "j2", set_actual)
-    # aqui habria que encender esos leds, falta parte neopixel
-    sm.pinta_puntos_matriz(led_iz_game_j1, led_de_game_j1)
+    # enciende los leds del digito iz del j2
+    sm.pinta_puntos_matriz(led_iz_game_j2, led_de_game_j2)
+    time.sleep(1)
     sm.limpia_matriz()
 
 
@@ -176,7 +176,7 @@ for y in range(6):
     # time.sleep(1)
     # el j1 gana un punto
     sumar_punto("j1")  # juego
-    _muestra_points_en_matriz()
+    #_muestra_points_en_matriz()
 
     # time.sleep(1)
     _muestra_games_en_matriz()
