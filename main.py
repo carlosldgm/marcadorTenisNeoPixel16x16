@@ -5,8 +5,14 @@ import machine
 import neopixel
 import time
 
+# Crear una única instancia de NeoPixel al inicio del script
+pixels = neopixel.NeoPixel(machine.Pin(4), 255)
+
 marcador = lmt.MarcadorTenis()
 marcador.obtener_estado_jugadores()
+
+
+
 """
 #AQUI VA LA LOGICA DEL WEB SERVER
 ...
@@ -63,7 +69,7 @@ def _devuelve_leds_para_enviar_a_matriz_de_un_punto(digitos, jugador):
     return leds_point_digito_izq, leds_point_digito_der
 
 
-def _devuelve_leds_para_enviar_a_matriz_de_un_game(digitos, jugador,set):
+def _devuelve_leds_para_enviar_a_matriz_de_un_game(digitos, jugador,set_actual):
     #para j1 los games se mostraran en si sc sd
     #para j2 los games se mostraran en ii ic id
     # ----------
@@ -79,7 +85,7 @@ def _devuelve_leds_para_enviar_a_matriz_de_un_game(digitos, jugador,set):
     digitos_str = str(digitos)
     digito_iz = digitos_str[0]
        
-    pos_set_arr = int(set)-1  
+    pos_set_arr = int(set_actual)-1  
     if len(digitos_str) >1 : #si vienen dos digitos 
         digito_de = digitos_str[1]       
         if jugador == "j1":
@@ -101,41 +107,35 @@ def _devuelve_leds_para_enviar_a_matriz_de_un_game(digitos, jugador,set):
 
 
 
-
-
-
-
 def _muestra_points_en_matriz():
     _limpia_matriz()
-    pixels = neopixel.NeoPixel(machine.Pin(4), 255)
     result = _obtener_marcador_jugadores()
     points_j1 = _obtener_points_jugador("j1")
     points_j2 = _obtener_points_jugador("j2")
     
     if points_j1 != "":
-        led_iz_point_j1,led_de_point_j1 = _devuelve_leds_para_enviar_a_matriz_de_un_punto(points_j1,"j1")
-        #enciende los leds del digito iz del j1
+        led_iz_point_j1, led_de_point_j1 = _devuelve_leds_para_enviar_a_matriz_de_un_punto(points_j1, "j1")
+        # Enciende los LEDs del dígito izquierdo del j1
         for i in led_iz_point_j1:
-            pixels[i] = (0,0,255)
-            pixels.write()
+            pixels[i] = (0, 0, 255)
+        # Enciende los LEDs del dígito derecho del j1
         for i in led_de_point_j1:
-            pixels[i] = (0,0,255)
-            pixels.write()        
+            pixels[i] = (0, 0, 255)
     if points_j2 != "":
-        led_iz_point_j2,led_de_point_j2 = _devuelve_leds_para_enviar_a_matriz_de_un_punto(points_j2,"j2")
-        #aqui habria que encender esos leds, falta parte neopixel
+        led_iz_point_j2, led_de_point_j2 = _devuelve_leds_para_enviar_a_matriz_de_un_punto(points_j2, "j2")
+        # Enciende los LEDs del dígito izquierdo del j2
         for i in led_iz_point_j2:
-            pixels[i] = (0,255,0)
-            pixels.write()
-            
+            pixels[i] = (0, 255, 0)
+        # Enciende los LEDs del dígito derecho del j2
         for i in led_de_point_j2:
-            pixels[i] = (0,255,0)
-            pixels.write()
-    time.sleep(0.2)         
+            pixels[i] = (0, 255, 0)
+    pixels.write()
+    time.sleep(2)  # Ajusta el tiempo de espera si es necesario
+ 
 
 def _muestra_games_en_matriz():
     _limpia_matriz()
-    pixels = neopixel.NeoPixel(machine.Pin(4), 255)
+    #pixels = neopixel.NeoPixel(machine.Pin(4), 255)
     result = _obtener_marcador_jugadores()
     games_j1 = _obtener_games_jugador("j1")
     games_j2 = _obtener_games_jugador("j2")
@@ -161,17 +161,23 @@ def _muestra_games_en_matriz():
          
 
 def _limpia_matriz():
-    pixels = neopixel.NeoPixel(machine.Pin(4), 255)
+    """
+    BLACK = (0,0,0)
+    pixels.fill(BLACK)
+    pixels.show()     
+    """
     for c in range(255):
         pixels[c] = (0,0,0)
         pixels.write()
-        
+       
         
 #-----------PRUEBA PARTIDO-------------------
 # resultado inicial
 
 _muestra_points_en_matriz()
 #time.sleep(1)
+
+
 for y in range(6):        
     #el j1 gana un punto
     sumar_punto("j1") #15-0
