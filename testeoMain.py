@@ -2,10 +2,10 @@
 import logica_marcador_tenis as lmt
 import mapeo_numeros_neopixel16x16 as mn
 import time
-import simula_matriz_16x16 as sm_imprimir_games
+import simula_matriz_16x16 as sm
 
 
-def _obtener_marcador_jugadores():
+def _obtener_marcador():
     result = marcador.obtener_marcador()
     print(result)
     return result
@@ -16,21 +16,21 @@ def sumar_punto(jugador):
 
 
 def _obtener_points_jugador(jugador):
-    result = _obtener_marcador_jugadores()
+    result = _obtener_marcador()
     points_jugador = result[jugador]['points']
     print("puntos jugador " + jugador + " " + str(points_jugador))
     return points_jugador
 
 
 def _obtener_games_jugador(jugador):
-    result = _obtener_marcador_jugadores()
+    result = _obtener_marcador()
     games_jugador = result[jugador]['games']
     print("games jugador " + jugador + " " + str(games_jugador))
     return games_jugador
 
 
 def _obtener_set_actual():
-    result = _obtener_marcador_jugadores()
+    result = _obtener_marcador()
     set_actual = str(result['set_actual'])
     print("set actual " + set_actual )
     return set_actual
@@ -103,7 +103,7 @@ def _devuelve_leds_para_enviar_a_matriz_de_un_game(digitos, jugador, set_actual)
 def _muestra_points_en_matriz():
     # _limpia_matriz()
     # pixels = neopixel.NeoPixel(machine.Pin(4), 255)
-    result = _obtener_marcador_jugadores()
+    result = _obtener_marcador()
     points_j1 = _obtener_points_jugador("j1")
     points_j2 = _obtener_points_jugador("j2")
 
@@ -118,7 +118,7 @@ def _muestra_points_en_matriz():
 
 
 def _muestra_games_en_matriz():
-    result = _obtener_marcador_jugadores()
+    result = _obtener_marcador()
     games_j1 = _obtener_games_jugador("j1")
     games_j2 = _obtener_games_jugador("j2")
     set_actual = "2" #_obtener_set_actual()  #"1"  # Aca sacar set_actual del json

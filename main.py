@@ -27,7 +27,7 @@ def _obtener_marcador_jugadores():
 
 def sumar_punto(jugador):
     marcador.actualizar_marcador(jugador)
-    #_obtener_marcador_jugadores()
+    #_obtener_marcador()
 
 
 def _obtener_points_jugador(jugador):
