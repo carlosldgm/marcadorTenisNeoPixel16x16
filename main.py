@@ -9,7 +9,7 @@ import time
 pixels = neopixel.NeoPixel(machine.Pin(4), 255)
 
 marcador = lmt.MarcadorTenis()
-marcador.obtener_estado_jugadores()
+marcador.obtener_marcador()
 
 
 
@@ -20,7 +20,7 @@ marcador.obtener_estado_jugadores()
 
 
 def _obtener_marcador_jugadores():
-    result = marcador.obtener_estado_jugadores()
+    result = marcador.obtener_marcador()
     print(result)
     return result
 

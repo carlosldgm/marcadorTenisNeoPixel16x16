@@ -2,11 +2,11 @@
 import logica_marcador_tenis as lmt
 import mapeo_numeros_neopixel16x16 as mn
 import time
-import simula_matriz_16x16 as sm
+import simula_matriz_16x16 as sm_imprimir_games
 
 
 def _obtener_marcador_jugadores():
-    result = marcador.obtener_estado_jugadores()
+    result = marcador.obtener_marcador()
     print(result)
     return result
 
@@ -27,6 +27,14 @@ def _obtener_games_jugador(jugador):
     games_jugador = result[jugador]['games']
     print("games jugador " + jugador + " " + str(games_jugador))
     return games_jugador
+
+
+def _obtener_set_actual():
+    result = _obtener_marcador_jugadores()
+    set_actual = str(result['set_actual'])
+    print("set actual " + set_actual )
+    return set_actual
+
 
 
 def _devuelve_leds_para_enviar_a_matriz_de_un_punto(digitos, jugador):
@@ -56,7 +64,7 @@ def _devuelve_leds_para_enviar_a_matriz_de_un_punto(digitos, jugador):
     return leds_point_digito_izq, leds_point_digito_der
 
 
-def _devuelve_leds_para_enviar_a_matriz_de_un_game(digitos, jugador, set):
+def _devuelve_leds_para_enviar_a_matriz_de_un_game(digitos, jugador, set_actual):
     # para j1 los games se mostraran en si sc sd
     # para j2 los games se mostraran en ii ic id
     # ----------
@@ -72,7 +80,7 @@ def _devuelve_leds_para_enviar_a_matriz_de_un_game(digitos, jugador, set):
     digitos_str = str(digitos)
     digito_iz = digitos_str[0]
 
-    pos_set_arr = int(set) - 1
+    pos_set_arr = int(set_actual) - 1
     if len(digitos_str) > 1:  # si vienen dos digitos
         digito_de = digitos_str[1]
         if jugador == "j1":
@@ -110,15 +118,14 @@ def _muestra_points_en_matriz():
 
 
 def _muestra_games_en_matriz():
-
     result = _obtener_marcador_jugadores()
     games_j1 = _obtener_games_jugador("j1")
     games_j2 = _obtener_games_jugador("j2")
-    set_actual = "1"
+    set_actual = "2" #_obtener_set_actual()  #"1"  # Aca sacar set_actual del json
     led_iz_game_j1, led_de_game_j1 = _devuelve_leds_para_enviar_a_matriz_de_un_game(games_j1, "j1", set_actual)
     # enciende los leds del digito iz del j1
     sm.pinta_puntos_matriz(led_iz_game_j1, led_de_game_j1)
-    #sm.limpia_matriz()
+    # sm.limpia_matriz()
 
     led_iz_game_j2, led_de_game_j2 = _devuelve_leds_para_enviar_a_matriz_de_un_game(games_j2, "j2", set_actual)
     # enciende los leds del digito iz del j2
@@ -133,50 +140,51 @@ def _limpia_matriz():
 
 # -----------PRUEBA PARTIDO-------------------
 marcador = lmt.MarcadorTenis()
-marcador.obtener_estado_jugadores()
+marcador.obtener_marcador()
 # resultado inicial
 
 _muestra_points_en_matriz()
 # time.sleep(1)
-for y in range(6):
-    # el j1 gana un punto
-    sumar_punto("j1")  # 15-0
-    _muestra_points_en_matriz()
+for num_sets in range(2):
+    for y in range(6):
+        # el j1 gana un punto
+        sumar_punto("j1")  # 15-0
+        _muestra_points_en_matriz()
 
-    # time.sleep(1)
-    # el j2 gana un punto
-    sumar_punto("j2")  # 15-15
-    _muestra_points_en_matriz()
+        # time.sleep(1)
+        # el j2 gana un punto
+        sumar_punto("j2")  # 15-15
+        _muestra_points_en_matriz()
 
-    # time.sleep(1)
-    # el j2 gana un punto
-    sumar_punto("j2")  # 15-30
-    _muestra_points_en_matriz()
+        # time.sleep(1)
+        # el j2 gana un punto
+        sumar_punto("j2")  # 15-30
+        _muestra_points_en_matriz()
 
-    # time.sleep(1)
-    # el j2 gana un punto
-    sumar_punto("j2")  # 15-40
-    _muestra_points_en_matriz()
+        # time.sleep(1)
+        # el j2 gana un punto
+        sumar_punto("j2")  # 15-40
+        _muestra_points_en_matriz()
 
-    # time.sleep(1)
-    # el j1 gana un punto
-    sumar_punto("j1")  # 30-40
-    _muestra_points_en_matriz()
+        # time.sleep(1)
+        # el j1 gana un punto
+        sumar_punto("j1")  # 30-40
+        _muestra_points_en_matriz()
 
-    # time.sleep(1)
-    # el j1 gana un punto
-    sumar_punto("j1")  # 40-40
-    _muestra_points_en_matriz()
+        # time.sleep(1)
+        # el j1 gana un punto
+        sumar_punto("j1")  # 40-40
+        _muestra_points_en_matriz()
 
-    # time.sleep(1)
-    # el j1 gana un punto
-    sumar_punto("j1")  # ad-
-    _muestra_points_en_matriz()
+        # time.sleep(1)
+        # el j1 gana un punto
+        sumar_punto("j1")  # ad-
+        _muestra_points_en_matriz()
 
-    # time.sleep(1)
-    # el j1 gana un punto
-    sumar_punto("j1")  # juego
-    #_muestra_points_en_matriz()
+        # time.sleep(1)
+        # el j1 gana un punto
+        sumar_punto("j1")  # juego
+        # _muestra_points_en_matriz()
 
-    # time.sleep(1)
-    _muestra_games_en_matriz()
+        # time.sleep(1)
+        _muestra_games_en_matriz()

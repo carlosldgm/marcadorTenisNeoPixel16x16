@@ -2,33 +2,33 @@ import logica_marcador_tenis as lmt
 
 # -----------------TESTEO---------------------------
 marcador = lmt.MarcadorTenis()
-marcador.obtener_estado_jugadores()
+marcador.obtener_marcador()
 
 
 def _j2_gana_game_con_ventajas():
     for i in range(3):
         marcador.actualizar_marcador("j2")
-        result = marcador.obtener_estado_jugadores()
+        result = marcador.obtener_marcador()
         _imprime_points(result)
     for i in range(3):
         marcador.actualizar_marcador("j1")
-        result = marcador.obtener_estado_jugadores()
+        result = marcador.obtener_marcador()
         _imprime_points(result)
     # ad j1
     marcador.actualizar_marcador("j1")
-    result = marcador.obtener_estado_jugadores()
+    result = marcador.obtener_marcador()
     _imprime_points(result)
     # deuce j1 j2
     marcador.actualizar_marcador("j2")
-    result = marcador.obtener_estado_jugadores()
+    result = marcador.obtener_marcador()
     _imprime_points(result)
     # ad j1
     marcador.actualizar_marcador("j1")
-    result = marcador.obtener_estado_jugadores()
+    result = marcador.obtener_marcador()
     _imprime_points(result)
     # game j1
     marcador.actualizar_marcador("j1")
-    result = marcador.obtener_estado_jugadores()
+    result = marcador.obtener_marcador()
     _imprime_points(result)
 
 
@@ -36,39 +36,39 @@ def _j2_gana_game_con_ventajas():
 def _j2_gana_game_con_ventajas():
     for i in range(3):
         marcador.actualizar_marcador("j1")
-        result = marcador.obtener_estado_jugadores()
+        result = marcador.obtener_marcador()
         _imprime_points(result)
     for i in range(3):
         marcador.actualizar_marcador("j2")
-        result = marcador.obtener_estado_jugadores()
+        result = marcador.obtener_marcador()
         _imprime_points(result)
     # ad j1
     marcador.actualizar_marcador("j1")
-    result = marcador.obtener_estado_jugadores()
+    result = marcador.obtener_marcador()
     _imprime_points(result)
     # deuce j1 j2
     marcador.actualizar_marcador("j2")
-    result = marcador.obtener_estado_jugadores()
+    result = marcador.obtener_marcador()
     _imprime_points(result)
     # ad j2
     marcador.actualizar_marcador("j2")
-    result = marcador.obtener_estado_jugadores()
+    result = marcador.obtener_marcador()
     _imprime_points(result)
     # game j2
     marcador.actualizar_marcador("j2")
-    result = marcador.obtener_estado_jugadores()
+    result = marcador.obtener_marcador()
     _imprime_points(result)
 
 
 def _j1_gana_point():
     marcador.actualizar_marcador("j1")
-    result = marcador.obtener_estado_jugadores()
+    result = marcador.obtener_marcador()
     _imprime_points(result)
 
 
 def _j2_gana_point():
     marcador.actualizar_marcador("j2")
-    result = marcador.obtener_estado_jugadores()
+    result = marcador.obtener_marcador()
     _imprime_points(result)
 
 

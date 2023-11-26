@@ -151,7 +151,7 @@ class MarcadorTenis:
             return True
         return False
 
-    def obtener_estado_jugadores(self):
+    def obtener_marcador(self):
         if not self.tiebreak:
             if self.points_jugador1 >= 4 or self.points_jugador2 >= 4:
                 if self.points_jugador1 - self.points_jugador2 == 1:
