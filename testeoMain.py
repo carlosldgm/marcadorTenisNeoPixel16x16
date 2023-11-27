@@ -32,9 +32,8 @@ def _obtener_games_jugador(jugador):
 def _obtener_set_actual():
     result = _obtener_marcador()
     set_actual = str(result['set_actual'])
-    print("set actual " + set_actual )
+    print("set actual " + set_actual)
     return set_actual
-
 
 
 def _devuelve_leds_para_enviar_a_matriz_de_un_punto(digitos, jugador):
@@ -121,7 +120,7 @@ def _muestra_games_en_matriz():
     result = _obtener_marcador()
     games_j1 = _obtener_games_jugador("j1")
     games_j2 = _obtener_games_jugador("j2")
-    set_actual = "2" #_obtener_set_actual()  #"1"  # Aca sacar set_actual del json
+    set_actual = "2"  # _obtener_set_actual()  #"1"  # Aca sacar set_actual del json
     led_iz_game_j1, led_de_game_j1 = _devuelve_leds_para_enviar_a_matriz_de_un_game(games_j1, "j1", set_actual)
     # enciende los leds del digito iz del j1
     sm.pinta_puntos_matriz(led_iz_game_j1, led_de_game_j1)

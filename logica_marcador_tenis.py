@@ -88,7 +88,7 @@ class MarcadorTenis:
                     self.sets_jugador2 += 1
                     print("¡El jugador 2 gana el set!")
                     print("Sets:", self.sets_jugador1, self.sets_jugador2)
-                    self.resetear_marcador()
+                self.resetear_marcador()
 
     def actualizar_games_tiebreak(self, ganador_punto):
         if ganador_punto == "j1":
@@ -153,11 +153,11 @@ class MarcadorTenis:
 
     def obtener_marcador(self):
         if not self.tiebreak:
-            if self.points_jugador1 >= 4 or self.points_jugador2 >= 4:
-                if self.points_jugador1 - self.points_jugador2 == 1:
+            if self.points_jugador1 >= 4 or self.points_jugador2 >= 4:  # si ya estamos en la parte de los 40's
+                if self.points_jugador1 - self.points_jugador2 == 1:  # hay ventaja para jugador 1
                     puntos_j1 = self.puntajes[4]  # AD j1
                     puntos_j2 = ""
-                elif self.points_jugador2 - self.points_jugador1 == 1:
+                elif self.points_jugador2 - self.points_jugador1 == 1: # hay ventaja para jugador 2
                     puntos_j2 = self.puntajes[4]  # AD j2
                     puntos_j1 = ""
                 else:
