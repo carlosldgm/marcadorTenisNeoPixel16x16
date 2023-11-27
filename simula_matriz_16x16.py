@@ -331,7 +331,7 @@ def grafica_matriz(matrix):
     plt.title('Valores LED')
     #plt.show()
     plt.ion()
-    plt.pause(1)
+    plt.pause(0.2)
 
 
 

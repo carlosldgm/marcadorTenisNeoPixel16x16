@@ -129,7 +129,7 @@ def _muestra_games_en_matriz():
     led_iz_game_j2, led_de_game_j2 = _devuelve_leds_para_enviar_a_matriz_de_un_game(games_j2, "j2", set_actual)
     # enciende los leds del digito iz del j2
     sm.pinta_puntos_matriz(led_iz_game_j2, led_de_game_j2)
-    time.sleep(1)
+    #time.sleep(1)
     sm.limpia_matriz()
 
 
