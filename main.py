@@ -130,7 +130,7 @@ def _muestra_points_en_matriz():
         for i in led_de_point_j2:
             pixels[i] = (0, 255, 0)
     pixels.write()
-    time.sleep(2)  # Ajusta el tiempo de espera si es necesario
+    time.sleep(0.8)  # Ajusta el tiempo de espera si es necesario
  
 
 def _muestra_games_en_matriz():
@@ -161,14 +161,8 @@ def _muestra_games_en_matriz():
          
 
 def _limpia_matriz():
-    """
-    BLACK = (0,0,0)
-    pixels.fill(BLACK)
-    pixels.show()     
-    """
-    for c in range(255):
-        pixels[c] = (0,0,0)
-        pixels.write()
+    pixels.fill((0, 0, 0))
+    pixels.write()    
        
         
 #-----------PRUEBA PARTIDO-------------------
@@ -218,5 +212,6 @@ for y in range(6):
     sumar_punto("j1") #juego
     _muestra_points_en_matriz()
 
-    #time.sleep(1)
+
     _muestra_games_en_matriz()
+    time.sleep(2)
