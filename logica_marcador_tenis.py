@@ -131,12 +131,36 @@ class MarcadorTenis:
             print("¡El jugador 2 gana el partido!")
 
     def obtener_marcador(self):
-        puntos_j1 = self.puntajes[self.points_jugador1] if not self.tiebreak else self.tiebreak_points_jugador1
-        puntos_j2 = self.puntajes[self.points_jugador2] if not self.tiebreak else self.tiebreak_points_jugador2
-
+        if not self.tiebreak:
+            if self.points_jugador1 >= 4 or self.points_jugador2 >= 4:  # si ya estamos en la parte de los 40's
+                if self.points_jugador1 - self.points_jugador2 == 1:  # hay ventaja para jugador 1
+                    puntos_j1 = self.puntajes[4]  # AD j1
+                    puntos_j2 = ""
+                elif self.points_jugador2 - self.points_jugador1 == 1: # hay ventaja para jugador 2
+                    puntos_j2 = self.puntajes[4]  # AD j2
+                    puntos_j1 = ""
+                else:
+                    puntos_j1 = self.puntajes[3]  # 40 - 40
+                    puntos_j2 = self.puntajes[3]  # 40 - 40
+            else:
+                puntos_j1 = self.puntajes[self.points_jugador1]  # no ha pasado los 40 rige (0,15,30,40)
+                puntos_j2 = self.puntajes[self.points_jugador2]  # no ha pasado los 40 rige (0,15,30,40)
+        else:
+            # como es tie brake rige (1,2..hasta ventaja de 2)
+            puntos_j1 = self.tiebreak_points_jugador1
+            puntos_j2 = self.tiebreak_points_jugador2
         result = {
-            "set_actual": self.set_actual,
-            "j1": {"points": puntos_j1, "games": self.games_jugador1, "sets": self.sets_jugador1},
-            "j2": {"points": puntos_j2, "games": self.games_jugador2, "sets": self.sets_jugador2}
+            "set_actual": {self.set_actual},
+            "j1": {
+                "points": puntos_j1,
+                "games": self.games_jugador1,
+                "sets": self.sets_jugador1
+            },
+            "j2": {
+                "points": puntos_j2,
+                "games": self.games_jugador2,
+                "sets": self.sets_jugador2
+            }
         }
+        # print(result)
         return result
