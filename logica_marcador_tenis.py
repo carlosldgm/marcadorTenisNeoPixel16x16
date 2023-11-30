@@ -16,17 +16,17 @@ class MarcadorTenis:
         self.set_actual = 1
         self.puntajes = ["0", "15", "30", "40", "AD"]
 
-    def actualizar_marcador(self, ganador_punto):
+    def actualizar_marcador(self, ganador_punto,SUMA_RESTA_PUNTO=1):
         if self.tiebreak:
-            self.actualizar_puntos_tiebreak(ganador_punto)
+            self.actualizar_puntos_tiebreak(ganador_punto,SUMA_RESTA_PUNTO)
         else:
-            self.actualizar_puntos(ganador_punto)
+            self.actualizar_puntos(ganador_punto, SUMA_RESTA_PUNTO)
 
-    def actualizar_puntos(self, ganador_punto):
+    def actualizar_puntos(self, ganador_punto, SUMA_RESTA_PUNTO):
         if ganador_punto == "j1":
-            self.points_jugador1 += 1
+            self.points_jugador1 += SUMA_RESTA_PUNTO
         else:
-            self.points_jugador2 += 1
+            self.points_jugador2 += SUMA_RESTA_PUNTO
 
         if self._hay_ganador_game():
             self.resetear_puntos()
@@ -36,11 +36,11 @@ class MarcadorTenis:
         self.points_jugador1 = 0
         self.points_jugador2 = 0
 
-    def actualizar_puntos_tiebreak(self, ganador_punto):
+    def actualizar_puntos_tiebreak(self, ganador_punto, SUMA_RESTA_PUNTO):
         if ganador_punto == "j1":
-            self.tiebreak_points_jugador1 += 1
+            self.tiebreak_points_jugador1 += SUMA_RESTA_PUNTO
         else:
-            self.tiebreak_points_jugador2 += 1
+            self.tiebreak_points_jugador2 += SUMA_RESTA_PUNTO
 
         if self._hay_ganador_tiebreak():
             self.finalizar_tiebreak(ganador_punto)
@@ -150,7 +150,7 @@ class MarcadorTenis:
             puntos_j1 = self.tiebreak_points_jugador1
             puntos_j2 = self.tiebreak_points_jugador2
         result = {
-            "set_actual": {self.set_actual},
+            "set_actual": self.set_actual,
             "j1": {
                 "points": puntos_j1,
                 "games": self.games_jugador1,

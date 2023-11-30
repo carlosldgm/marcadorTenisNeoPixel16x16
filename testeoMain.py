@@ -19,15 +19,14 @@ def restar_punto(jugador):
     marcador.actualizar_marcador(jugador, -1)
 
 
-def _obtener_points_jugador(jugador):
-    result = _obtener_marcador()
+def _obtener_points_jugador(jugador,result):
+    #result = _obtener_marcador()
     points_jugador = result[jugador]['points']
     # print("puntos jugador " + jugador + " " + str(points_jugador))
     return points_jugador
 
 
 def _obtener_games_jugador(jugador, result):
-    # result = _obtener_marcador()
     games_jugador = result[jugador]['games']
     # print("games jugador " + jugador + " " + str(games_jugador))
     return games_jugador
@@ -104,11 +103,9 @@ def _devuelve_leds_para_enviar_a_matriz_de_un_game(digitos, jugador, set_actual)
 
 
 def _muestra_points_en_matriz():
-    # _limpia_matriz()
-    # pixels = neopixel.NeoPixel(machine.Pin(4), 255)
     result = _obtener_marcador()
-    points_j1 = _obtener_points_jugador("j1")
-    points_j2 = _obtener_points_jugador("j2")
+    points_j1 = _obtener_points_jugador("j1",result)
+    points_j2 = _obtener_points_jugador("j2",result)
 
     if points_j1 != "":
         led_iz_point_j1, led_de_point_j1 = _devuelve_leds_para_enviar_a_matriz_de_un_punto(points_j1, "j1")
@@ -126,7 +123,7 @@ def _muestra_games_en_matriz():
     games_j2 = _obtener_games_jugador("j2", result)
     if games_j1 == 0 and games_j2 == 0:
         return
-    set_actual = "2"  # _obtener_set_actual()  #"1"  # Aca sacar set_actual del json
+    set_actual = _obtener_set_actual()  #"1"  # Aca sacar set_actual del json
     led_iz_game_j1, led_de_game_j1 = _devuelve_leds_para_enviar_a_matriz_de_un_game(games_j1, "j1", set_actual)
     # enciende los leds del digito iz del j1
     sm.pinta_puntos_matriz(led_iz_game_j1, led_de_game_j1)
@@ -145,8 +142,8 @@ def _limpia_matriz():
 
 # -----------PRUEBA PARTIDO-------------------
 marcador = lmt.MarcadorTenis()
-marcador.obtener_marcador()
-# resultado inicial
+#marcador.obtener_marcador()
+
 
 _muestra_points_en_matriz()
 
