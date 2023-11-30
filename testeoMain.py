@@ -15,17 +15,21 @@ def sumar_punto(jugador):
     marcador.actualizar_marcador(jugador)
 
 
+def restar_punto(jugador):
+    marcador.actualizar_marcador(jugador, -1)
+
+
 def _obtener_points_jugador(jugador):
     result = _obtener_marcador()
     points_jugador = result[jugador]['points']
-    #print("puntos jugador " + jugador + " " + str(points_jugador))
+    # print("puntos jugador " + jugador + " " + str(points_jugador))
     return points_jugador
 
 
-def _obtener_games_jugador(jugador,result):
-    #result = _obtener_marcador()
+def _obtener_games_jugador(jugador, result):
+    # result = _obtener_marcador()
     games_jugador = result[jugador]['games']
-    #print("games jugador " + jugador + " " + str(games_jugador))
+    # print("games jugador " + jugador + " " + str(games_jugador))
     return games_jugador
 
 
@@ -118,8 +122,8 @@ def _muestra_points_en_matriz():
 
 def _muestra_games_en_matriz():
     result = _obtener_marcador()
-    games_j1 = _obtener_games_jugador("j1",result)
-    games_j2 = _obtener_games_jugador("j2",result)
+    games_j1 = _obtener_games_jugador("j1", result)
+    games_j2 = _obtener_games_jugador("j2", result)
     if games_j1 == 0 and games_j2 == 0:
         return
     set_actual = "2"  # _obtener_set_actual()  #"1"  # Aca sacar set_actual del json
@@ -131,7 +135,7 @@ def _muestra_games_en_matriz():
     led_iz_game_j2, led_de_game_j2 = _devuelve_leds_para_enviar_a_matriz_de_un_game(games_j2, "j2", set_actual)
     # enciende los leds del digito iz del j2
     sm.pinta_puntos_matriz(led_iz_game_j2, led_de_game_j2)
-    #time.sleep(1)
+    # time.sleep(1)
     sm.limpia_matriz()
 
 
@@ -145,7 +149,7 @@ marcador.obtener_marcador()
 # resultado inicial
 
 _muestra_points_en_matriz()
-# time.sleep(1)
+
 for num_sets in range(2):
     for y in range(6):
         # el j1 gana un punto
