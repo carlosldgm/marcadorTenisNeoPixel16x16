@@ -5,9 +5,11 @@ import machine
 import neopixel
 import time
 
-import network
 from machine import Pin
-import usocket as socket
+
+
+import bluetooth
+from BLE import BLEUART
 
 # Crear una única instancia de NeoPixel al inicio del script
 pixels = neopixel.NeoPixel(machine.Pin(4), 255)
@@ -23,6 +25,7 @@ def _obtener_marcador_jugadores():
 
 
 def sumar_punto(jugador):
+    print("entre a sumar")
     marcador.actualizar_marcador(jugador)
     #_obtener_marcador()
 
@@ -163,8 +166,8 @@ def _limpia_matriz():
        
         
 #-----------PRUEBA PARTIDO-------------------
-"""
 
+"""
 _muestra_points_en_matriz()
 
 
@@ -216,46 +219,30 @@ for y in range(6):
 
 
 
-#AQUI VA LA LOGICA DEL WEB SERVER
-def web_page():
-  if led.value() == 1:
-    gpio_state="ON"
-  else:
-    gpio_state="OFF"
-  
-  html = """<html><head> <title>ESP Web Server</title> <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="data:,"> <style>html{font-family: Helvetica; display:inline-block; margin: 0px auto; text-align: center;}
-  h1{color: #0F3376; padding: 2vh;}p{font-size: 1.5rem;}.button{display: inline-block; background-color: #e7bd3b; border: none; 
-  border-radius: 4px; color: white; padding: 16px 40px; text-decoration: none; font-size: 30px; margin: 2px; cursor: pointer;}
-  .button2{background-color: #4286f4;}</style></head><body> <h1>ESP Web Server</h1> 
-  <p>GPIO state: <strong>""" + gpio_state + """</strong></p><p><a href="/?led=on"><button class="button">ON</button></a></p>
-  <p><a href="/?led=off"><button class="button button2">OFF</button></a></p></body></html>"""
-  return html
+#Aqui ira la logica de bluetooth
+name = "Cisco"
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind(('', 80))
-s.listen(5)
+print (name , "Conectado a Bluetooht")
 
-while True:
-  conn, addr = s.accept()
-  print('Got a connection from %s' % str(addr))
-  request = conn.recv(1024)
-  request = str(request)
-  print('Content = %s' % request)
-  led_on = request.find('/?led=on')
-  led_off = request.find('/?led=off')
-  if led_on == 6:
-    print('LED ON')
-    led.value(1)
-  if led_off == 6:
-    print('LED OFF')
-    led.value(0)
-  response = web_page()
-  conn.send('HTTP/1.1 200 OK\n')
-  conn.send('Content-Type: text/html\n')
-  conn.send('Connection: close\n\n')
-  conn.sendall(response)
-  conn.close()
+ble = bluetooth.BLE()
+uart = BLEUART(ble, name)
+led = Pin(2, Pin.OUT)
 
+def on_rx():
+    rx_recibe = uart.read().decode().strip()
+    uart.write("EspBot dice:" + str(rx_recibe) + "\n")
+    print(rx_recibe)
+    
+    
+    if rx_recibe == "!B516":
+        led.value(1)
+        print("ON")
+        sumar_punto("j1")
+        _muestra_points_en_matriz()
+    if rx_recibe == "!B615":
+        led.value(0)
+        print("OFF")
+        
+uart.irq(handler = on_rx)     
 
 
