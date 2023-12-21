@@ -29,6 +29,9 @@ def sumar_punto(jugador):
     marcador.actualizar_marcador(jugador)
     #_obtener_marcador()
 
+def restar_punto(jugador):
+    print("entre a sumar")
+    marcador.actualizar_marcador(jugador,-1)
 
 def _obtener_points_jugador(jugador):
     result = _obtener_marcador_jugadores()
@@ -236,12 +239,13 @@ def on_rx():
     
     if rx_recibe == "!B516":
         led.value(1)
-        print("ON")
         sumar_punto("j1")
         _muestra_points_en_matriz()
+
     if rx_recibe == "!B615":
         led.value(0)
-        print("OFF")
+        restar_punto("j1")
+        _muestra_points_en_matriz()
         
 uart.irq(handler = on_rx)     
 
