@@ -147,6 +147,13 @@ marcador = lmt.MarcadorTenis()
 
 _muestra_points_en_matriz()
 
+sumar_punto("j1")  # 15-0
+_muestra_points_en_matriz()
+
+restar_punto("j1")  # 0-0
+_muestra_points_en_matriz()
+
+"""
 for num_sets in range(2):
     for y in range(6):
         # el j1 gana un punto
@@ -190,3 +197,4 @@ for num_sets in range(2):
 
         # time.sleep(1)
         _muestra_games_en_matriz()
+"""

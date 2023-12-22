@@ -30,8 +30,8 @@ def sumar_punto(jugador):
     #_obtener_marcador()
 
 def restar_punto(jugador):
-    print("entre a sumar")
-    marcador.actualizar_marcador(jugador,-1)
+    print("entre a restar")
+    marcador.actualizar_marcador(jugador, -1)
 
 def _obtener_points_jugador(jugador):
     result = _obtener_marcador_jugadores()
@@ -223,7 +223,7 @@ for y in range(6):
 
 
 #Aqui ira la logica de bluetooth
-name = "Cisco"
+name = "Marcador-Tenis"
 
 print (name , "Conectado a Bluetooht")
 

@@ -47,8 +47,13 @@ class MarcadorTenis:
             self.actualizar_games(ganador_punto)
 
     def finalizar_tiebreak(self, ganador_punto):
+        """
         print(f"{ganador_punto} gana tiebreak")
         print(f"Tiebreak: {self.tiebreak_points_jugador1} - {self.tiebreak_points_jugador2}")
+        """
+        print("{} gana tiebreak".format(ganador_punto))
+        print("Tiebreak: {} - {}".format(self.tiebreak_points_jugador1, self.tiebreak_points_jugador2))
+
         self.tiebreak = False
         self.resetear_puntos()
 
@@ -78,7 +83,8 @@ class MarcadorTenis:
         else:
             self.games_jugador2 += 1
 
-        print(f"games: {self.games_jugador1} - {self.games_jugador2}")
+        #print(f"games: {self.games_jugador1} - {self.games_jugador2}")
+        print("games: {} - {}".format(self.games_jugador1, self.games_jugador2))    
         if self._hay_ganador_set():
             self.finalizar_set(ganador_punto)
 
@@ -97,7 +103,8 @@ class MarcadorTenis:
             self.sets_jugador2 += 1
             print("¡El jugador 2 gana el set!")
 
-        print(f"Sets: {self.sets_jugador1} - {self.sets_jugador2}")
+        #print(f"Sets: {self.sets_jugador1} - {self.sets_jugador2}")
+        print("Sets: {} - {}".format(self.sets_jugador1, self.sets_jugador2))     
         self.resetear_set()
         self.verificar_ganador_partido()
 
@@ -164,3 +171,5 @@ class MarcadorTenis:
         }
         # print(result)
         return result
+
+
