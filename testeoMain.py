@@ -12,11 +12,13 @@ def _obtener_marcador():
 
 
 def sumar_punto(jugador):
-    marcador.actualizar_marcador(jugador)
+    # marcador.actualizar_marcador(jugador)
+    suma_resta_punto_full(jugador)
 
 
 def restar_punto(jugador):
-    marcador.actualizar_marcador(jugador, -1)
+    # marcador.actualizar_marcador(jugador, -1)
+    suma_resta_punto_full(jugador, -1)
 
 
 def _obtener_points_jugador(jugador, result):
@@ -140,11 +142,11 @@ def _limpia_matriz():
     sm.limpia_matriz()
 
 
-def suma_punto_full(jugador):
+def suma_resta_punto_full(jugador, SUMA_RESTA=1):
     result_prev = _obtener_marcador()
     games_j1_prev = _obtener_games_jugador(jugador, result_prev)
     sets_j1_prev = _obtener_set_actual()
-    marcador.actualizar_marcador(jugador) #actualiza punto
+    marcador.actualizar_marcador(jugador, SUMA_RESTA)  # actualiza punto
     result_post = _obtener_marcador()
     games_j1_post = _obtener_games_jugador(jugador, result_post)
     sets_j1_post = _obtener_set_actual()
@@ -157,16 +159,16 @@ def suma_punto_full(jugador):
 
 def j1_gana_game():
     # el j1 gana un punto
-    suma_punto_full("j1")  # 15-0
+    sumar_punto("j1")  # 15-0
 
     # el j1 gana un punto
-    suma_punto_full("j1")  # 30-0
+    sumar_punto("j1")  # 30-0
 
     # el j1 gana un punto
-    suma_punto_full("j1")  # 40-0
+    sumar_punto("j1")  # 40-0
 
     # el j1 gana un punto
-    suma_punto_full("j1")  # juego
+    sumar_punto("j1")  # juego
 
 
 # -----------PRUEBA PARTIDO-------------------
