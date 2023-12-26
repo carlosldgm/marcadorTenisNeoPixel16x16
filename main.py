@@ -233,59 +233,11 @@ def _obtener_set_actual():
     return set_actual
 
 
-# -----------PRUEBA PARTIDO-------------------
-
-"""
+# -----------Logica Principal-------------------
+marcador = lmt.MarcadorTenis()
 _muestra_points_en_matriz()
 
-
-
-for y in range(6):        
-    #el j1 gana un punto
-    sumar_punto("j1") #15-0
-    _muestra_points_en_matriz()
-
-    #time.sleep(1)
-    #el j2 gana un punto
-    sumar_punto("j2") #15-15
-    _muestra_points_en_matriz()
-
-    #time.sleep(1)
-    #el j2 gana un punto
-    sumar_punto("j2") #15-30
-    _muestra_points_en_matriz()
-
-    #time.sleep(1)
-    #el j2 gana un punto
-    sumar_punto("j2") #15-40
-    _muestra_points_en_matriz()
-
-    #time.sleep(1)
-    #el j1 gana un punto
-    sumar_punto("j1") #30-40
-    _muestra_points_en_matriz()
-
-    #time.sleep(1)
-    #el j1 gana un punto
-    sumar_punto("j1") #40-40
-    _muestra_points_en_matriz()
-
-    #time.sleep(1)
-    #el j1 gana un punto
-    sumar_punto("j1") #ad-
-    _muestra_points_en_matriz()
-
-    #time.sleep(1)
-    #el j1 gana un punto
-    sumar_punto("j1") #juego
-    _muestra_points_en_matriz()
-
-
-    _muestra_games_en_matriz()
-    time.sleep(2)
-"""
-
-# Aqui ira la logica de bluetooth
+# logica de bluetooth
 name = "Marcador-Tenis"
 led = Pin(2, Pin.OUT)
 
@@ -299,30 +251,26 @@ def on_rx():
         if rx_recibe == "!B516":
             led.value(1)
             sumar_punto("j1")
-            _muestra_points_en_matriz()
 
         if rx_recibe == "!B318":
             led.value(0)
             restar_punto("j1")
-            _muestra_points_en_matriz()
-            
+
         if rx_recibe == "!B219":
             led.value(1)
             sumar_punto("j2")
-            _muestra_points_en_matriz()
 
         if rx_recibe == "!B417":
             led.value(0)
             restar_punto("j2")
-            _muestra_points_en_matriz()
-            
+
         if rx_recibe == "!B615":
             led.value(0)
             resetear_marcador()
-            
+
         _muestra_points_en_matriz()
-            
-        
+
+
     except Exception as e:
         print("Error al procesar datos: {}".format(e))
 
@@ -337,4 +285,3 @@ except bluetooth.BluetoothError as be:
     print("Error Bluetooth: {}".format(be))
 except Exception as e:
     print("Error general: {}".format(e))
-
