@@ -156,6 +156,8 @@ def suma_resta_punto_full(jugador, SUMA_RESTA=1):
     else:
         _muestra_points_en_matriz()
 
+def resetear_marcador():
+    marcador.resetear_marcador()
 
 def j1_gana_game():
     # el j1 gana un punto
