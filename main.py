@@ -301,12 +301,30 @@ def on_rx():
             sumar_punto("j1")
             _muestra_points_en_matriz()
 
-        if rx_recibe == "!B615":
+        if rx_recibe == "!B318":
             led.value(0)
             restar_punto("j1")
             _muestra_points_en_matriz()
+            
+        if rx_recibe == "!B219":
+            led.value(1)
+            sumar_punto("j2")
+            _muestra_points_en_matriz()
+
+        if rx_recibe == "!B417":
+            led.value(0)
+            restar_punto("j2")
+            _muestra_points_en_matriz()
+            
+        if rx_recibe == "!B615":
+            led.value(0)
+            resetear_marcador()
+            
+        _muestra_points_en_matriz()
+            
+        
     except Exception as e:
-        print(f"Error al procesar datos: {e}")
+        print("Error al procesar datos: {}".format(e))
 
 
 try:
@@ -316,6 +334,7 @@ try:
     uart.irq(handler=on_rx)
 
 except bluetooth.BluetoothError as be:
-    print(f"Error Bluetooth: {be}")
+    print("Error Bluetooth: {}".format(be))
 except Exception as e:
-    print(f"Error general: {e}")
+    print("Error general: {}".format(e))
+
