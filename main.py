@@ -272,28 +272,35 @@ for y in range(6):
 
 # Aqui ira la logica de bluetooth
 name = "Marcador-Tenis"
-
-print(name, "Conectado a Bluetooht")
-
-ble = bluetooth.BLE()
-uart = BLEUART(ble, name)
 led = Pin(2, Pin.OUT)
 
 
 def on_rx():
-    rx_recibe = uart.read().decode().strip()
-    uart.write("EspBot dice:" + str(rx_recibe) + "\n")
-    print(rx_recibe)
+    try:
+        rx_recibe = uart.read().decode().strip()
+        uart.write("EspBot dice:" + str(rx_recibe) + "\n")
+        print(rx_recibe)
 
-    if rx_recibe == "!B516":
-        led.value(1)
-        sumar_punto("j1")
-        _muestra_points_en_matriz()
+        if rx_recibe == "!B516":
+            led.value(1)
+            sumar_punto("j1")
+            _muestra_points_en_matriz()
 
-    if rx_recibe == "!B615":
-        led.value(0)
-        restar_punto("j1")
-        _muestra_points_en_matriz()
+        if rx_recibe == "!B615":
+            led.value(0)
+            restar_punto("j1")
+            _muestra_points_en_matriz()
+    except Exception as e:
+        print(f"Error al procesar datos: {e}")
 
 
-uart.irq(handler=on_rx)
+try:
+    print(name, "Conectado a Bluetooth")
+    ble = bluetooth.BLE()
+    uart = BLEUART(ble, name)
+    uart.irq(handler=on_rx)
+
+except bluetooth.BluetoothError as be:
+    print(f"Error Bluetooth: {be}")
+except Exception as e:
+    print(f"Error general: {e}")
