@@ -23,16 +23,6 @@ def _obtener_marcador_jugadores():
     return result
 
 
-"""
-def sumar_punto(jugador):
-    print("entre a sumar")
-    marcador.actualizar_marcador(jugador)
-    
-def restar_punto(jugador):
-    marcador.actualizar_marcador(jugador, -1)    
-"""
-
-
 def sumar_punto(jugador):
     suma_resta_punto_full(jugador)
 
@@ -62,29 +52,11 @@ def _obtener_set_actual():
     return set_actual
 
 
-"""
-def _obtener_points_jugador(jugador):
-    result = _obtener_marcador_jugadores()
-    points_jugador = result[jugador]['points']
-    print("puntos jugador " + jugador + " " + str(points_jugador))
-    return points_jugador
-"""
-
-
 def _obtener_points_jugador(jugador, result):
     # result = _obtener_marcador()
     points_jugador = result[jugador]['points']
     # print("puntos jugador " + jugador + " " + str(points_jugador))
     return points_jugador
-
-
-"""
-def _obtener_games_jugador(jugador):
-    result = _obtener_marcador_jugadores()
-    games_jugador = result[jugador]['games']
-    print("games jugador " + jugador + " " + str(games_jugador))
-    return games_jugador
-"""
 
 
 def _obtener_games_jugador(jugador, result):
@@ -234,7 +206,6 @@ def _obtener_set_actual():
 
 
 # -----------Logica Principal-------------------
-marcador = lmt.MarcadorTenis()
 _muestra_points_en_matriz()
 
 # logica de bluetooth
