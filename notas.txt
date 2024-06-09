@@ -1,3 +1,10 @@
+Como hacerlo correr:
+1- Si quiero probar solo la logica del marcador tengo que ejecutar testeoMain.py este levanta un emulador de marcador
+y no tengo que tener conectado el esp32 con la matriz (hacerlo en PyCharm)
+
+
+
+
 -LO QUE FALTA:
 1- [ok]tie brake
 2- [ok]que separe los numeros del marcador de cada jugador y se los envie a la funcion que sabe donde mostrarlos en el tablero dependiendo del jugador
