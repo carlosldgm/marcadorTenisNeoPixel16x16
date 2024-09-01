@@ -103,8 +103,8 @@ def _devuelve_leds_para_enviar_a_matriz_de_un_game(digitos, jugador, set_actual)
 
     return leds_point_digito_izq, leds_point_digito_der
 
-
-def _muestra_points_en_matriz(show = False):
+#poner el valor de Show a False si no quiero mostrar el emulador de la matriz led
+def _muestra_points_en_matriz(show = True):
     if show:
         result = _obtener_marcador()
         points_j1 = _obtener_points_jugador("j1", result)
