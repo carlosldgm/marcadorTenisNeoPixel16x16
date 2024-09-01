@@ -103,7 +103,7 @@ def _devuelve_leds_para_enviar_a_matriz_de_un_game(digitos, jugador, set_actual)
 
     return leds_point_digito_izq, leds_point_digito_der
 
-#poner el valor de Show a False si no quiero mostrar el emulador de la matriz led
+#poner el valor de Show a False si no quiero mostrar los points en el emulador de la matriz led
 def _muestra_points_en_matriz(show = True):
     if show:
         result = _obtener_marcador()
@@ -119,7 +119,7 @@ def _muestra_points_en_matriz(show = True):
         # time.sleep(0.2)
         sm.limpia_matriz()
 
-
+#poner el valor de Show a False si no quiero mostrar los games en el emulador de la matriz led
 def _muestra_games_en_matriz(show = False):
     if show:
         result = _obtener_marcador()
