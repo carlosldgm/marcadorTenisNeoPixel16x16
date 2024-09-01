@@ -4,62 +4,6 @@ import logica_marcador_tenis as lmt
 marcador = lmt.MarcadorTenis()
 marcador.obtener_marcador()
 
-
-def _j2_gana_game_con_ventajas():
-    for i in range(3):
-        marcador.actualizar_marcador("j2")
-        result = marcador.obtener_marcador()
-        _imprime_points(result)
-    for i in range(3):
-        marcador.actualizar_marcador("j1")
-        result = marcador.obtener_marcador()
-        _imprime_points(result)
-    # ad j1
-    marcador.actualizar_marcador("j1")
-    result = marcador.obtener_marcador()
-    _imprime_points(result)
-    # deuce j1 j2
-    marcador.actualizar_marcador("j2")
-    result = marcador.obtener_marcador()
-    _imprime_points(result)
-    # ad j1
-    marcador.actualizar_marcador("j1")
-    result = marcador.obtener_marcador()
-    _imprime_points(result)
-    # game j1
-    marcador.actualizar_marcador("j1")
-    result = marcador.obtener_marcador()
-    _imprime_points(result)
-
-
-# GANA GAME J2
-def _j2_gana_game_con_ventajas():
-    for i in range(3):
-        marcador.actualizar_marcador("j1")
-        result = marcador.obtener_marcador()
-        _imprime_points(result)
-    for i in range(3):
-        marcador.actualizar_marcador("j2")
-        result = marcador.obtener_marcador()
-        _imprime_points(result)
-    # ad j1
-    marcador.actualizar_marcador("j1")
-    result = marcador.obtener_marcador()
-    _imprime_points(result)
-    # deuce j1 j2
-    marcador.actualizar_marcador("j2")
-    result = marcador.obtener_marcador()
-    _imprime_points(result)
-    # ad j2
-    marcador.actualizar_marcador("j2")
-    result = marcador.obtener_marcador()
-    _imprime_points(result)
-    # game j2
-    marcador.actualizar_marcador("j2")
-    result = marcador.obtener_marcador()
-    _imprime_points(result)
-
-
 def _j1_gana_point():
     marcador.actualizar_marcador("j1")
     result = marcador.obtener_marcador()
@@ -67,8 +11,8 @@ def _j1_gana_point():
 
 
 def _j2_gana_point():
-    marcador.actualizar_marcador("j2")
-    result = marcador.obtener_marcador()
+    marcador.actualizar_marcador("j2") #gana punto j2
+    result = marcador.obtener_marcador() #recupera el marcador para obtener la actualizacion
     _imprime_points(result)
 
 
@@ -80,67 +24,81 @@ def _imprime_points(result):
 
 
 def _test_set_con_tiebrake():
-    _j1_gana_point()  # 15
-    _j1_gana_point()  # 30
-    _j1_gana_point()  # 40
+    _j1_gana_point()  # 15-0
+    _j1_gana_point()  # 30-0
+    _j1_gana_point()  # 40-0
     _j1_gana_point()  # juego 1-0
-    _j1_gana_point()  # 15
-    _j1_gana_point()  # 30
-    _j1_gana_point()  # 40
-    _j1_gana_point()  # juego 2-0
-    _j1_gana_point()  # 15
-    _j1_gana_point()  # 30
-    _j1_gana_point()  # 40
-    _j1_gana_point()  # juego 3-0
-    _j1_gana_point()  # 15
-    _j1_gana_point()  # 30
-    _j1_gana_point()  # 40
-    _j1_gana_point()  # juego 4-0
-    _j1_gana_point()  # 15
-    _j1_gana_point()  # 30
-    _j1_gana_point()  # 40
-    _j1_gana_point()  # juego 5-0
-
-    _j2_gana_point()  # 15
-    _j2_gana_point()  # 30
-    _j2_gana_point()  # 40
-    _j2_gana_point()  # juego 1-0
-    _j2_gana_point()  # 15
-    _j2_gana_point()  # 30
-    _j2_gana_point()  # 40
-    _j2_gana_point()  # juego 2-0
-    _j2_gana_point()  # 15
-    _j2_gana_point()  # 30
-    _j2_gana_point()  # 40
-    _j2_gana_point()  # juego 3-0
-    _j2_gana_point()  # 15
-    _j2_gana_point()  # 30
-    _j2_gana_point()  # 40
-    _j2_gana_point()  # juego 4-0
-    _j2_gana_point()  # 15
-    _j2_gana_point()  # 30
-    _j2_gana_point()  # 40
-    _j2_gana_point()  # juego 5-0
-
-    _j1_gana_point()  # 15
-    _j1_gana_point()  # 30
-    _j1_gana_point()  # 40
+    _j2_gana_point()  # 0-15
+    _j2_gana_point()  # 0-30
+    _j2_gana_point()  # 0-40
+    _j1_gana_point()  # 15-40
+    _j2_gana_point()  # juego 1-1
+    _j2_gana_point()  # 0-15
+    _j2_gana_point()  # 0-30
+    _j1_gana_point()  # 15-30
+    _j1_gana_point()  # 30-30
+    _j1_gana_point()  # 40-30
+    _j1_gana_point()  # juego 2-1
+    _j2_gana_point()  # 0-15
+    _j2_gana_point()  # 0-30
+    _j2_gana_point()  # 0-40
+    _j1_gana_point()  # 15-40
+    _j2_gana_point()  # juego 2-2
+    _j1_gana_point()  # 15-0
+    _j1_gana_point()  # 30-0
+    _j1_gana_point()  # 40-0
+    _j1_gana_point()  # juego 3-2
+    _j2_gana_point()  # 0-15
+    _j1_gana_point()  # 15-15
+    _j2_gana_point()  # 15-30
+    _j2_gana_point()  # 15-40
+    _j1_gana_point()  # 30-40
+    _j2_gana_point()  # juego 3-3
+    _j1_gana_point()  # 15-0
+    _j2_gana_point()  # 15-15
+    _j1_gana_point()  # 30-15
+    _j1_gana_point()  # 40-15
+    _j1_gana_point()  # juego 4-3
+    _j2_gana_point()  # 0-15
+    _j1_gana_point()  # 15-15
+    _j2_gana_point()  # 15-30
+    _j1_gana_point()  # 30-30
+    _j2_gana_point()  # 30-40
+    _j1_gana_point()  # 40-40
+    _j2_gana_point()  # 40-A
+    _j2_gana_point()  # juego 4-4
+    _j2_gana_point()  # 0-15
+    _j2_gana_point()  # 0-30
+    _j1_gana_point()  # 15-30
+    _j1_gana_point()  # 30-30
+    _j1_gana_point()  # 40-30
+    _j1_gana_point()  # juego 5-4
+    _j2_gana_point()  # 0-15
+    _j2_gana_point()  # 0-30
+    _j1_gana_point()  # 15-30
+    _j2_gana_point()  # 15-40
+    _j2_gana_point()  # juego 5-5
+    _j2_gana_point()  # 0-15
+    _j1_gana_point()  # 15-15
+    _j1_gana_point()  # 30-15
+    _j1_gana_point()  # 40-15
     _j1_gana_point()  # juego 6-5
-
-    _j2_gana_point()  # 15
-    _j2_gana_point()  # 30
-    _j2_gana_point()  # 40
+    _j2_gana_point()  # 0-15
+    _j1_gana_point()  # 15-15
+    _j2_gana_point()  # 15-30
+    _j2_gana_point()  # 15-40
     _j2_gana_point()  # juego 6-6
 
-    # tie brake
+    # TIE BRAKE
     _j1_gana_point()  # 1-0
     _j1_gana_point()  # 2-0
     _j1_gana_point()  # 3-0
     _j1_gana_point()  # 4-0
     _j1_gana_point()  # 5-0
-    _j1_gana_point()  # 6-0
-    _j2_gana_point()  # 6-1
-    _j1_gana_point()  # 7-1
+    _j2_gana_point()  # 5-1
+    _j2_gana_point()  # 5-2
+    _j1_gana_point()  # 6-2
+    _j1_gana_point()  # 7-2
 
 
 _test_set_con_tiebrake()
