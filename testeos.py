@@ -1,3 +1,7 @@
+"""
+Este archivo tiene el sentido de hacer pruebas de la logica incluida en la clase  logica_marcador_tenis sin
+mostrar la matriz de leds ni la logica bluetooth solo la logica que devuelve el json del marcador
+"""
 import logica_marcador_tenis as lmt
 
 # -----------------TESTEO---------------------------
