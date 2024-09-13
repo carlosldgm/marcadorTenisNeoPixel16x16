@@ -1,4 +1,6 @@
 # import logica_marcador_tenis as lmt
+from pickle import FALSE
+
 import logica_marcador_tenis as lmt
 import mapeo_numeros_neopixel16x16 as mn
 import time
@@ -183,72 +185,104 @@ def j1_gana_game():
 marcador = lmt.MarcadorTenis()
 _muestra_points_en_matriz(False)
 
-#sumar_punto("j1")
-#j1_gana_game()
+#1-0
+sumar_punto("j1")  # 15-0
+sumar_punto("j1")  # 30-0
+sumar_punto("j1")  # 40-0
+sumar_punto("j1")  # juego
 
-'''
-for num_sets in range(2):
-    for y in range(6):
-        # el j1 gana un punto
-        sumar_punto("j1")  # 15-0
-        _muestra_points_en_matriz()
+#1-1
+sumar_punto("j2")  # 0-15
+sumar_punto("j2")  # 0-30
+sumar_punto("j2")  # 0-40
+sumar_punto("j1")  # 15-40
+sumar_punto("j2")  # juego
 
-        # time.sleep(1)
-        # el j2 gana un punto
-        sumar_punto("j2")  # 15-15
-        _muestra_points_en_matriz()
+#2-1
+sumar_punto("j2")  # 0-15
+sumar_punto("j2")  # 0-30
+sumar_punto("j1")  # 15-30
+sumar_punto("j1")  # 30-30
+sumar_punto("j1")  # 40-30
+sumar_punto("j1")  # juego
 
-        # time.sleep(1)
-        # el j2 gana un punto
-        sumar_punto("j2")  # 15-30
-        _muestra_points_en_matriz()
+#2-2
+sumar_punto("j2")  # 0-15
+sumar_punto("j2")  # 0-30
+sumar_punto("j2")  # 0-40
+sumar_punto("j1")  # 15-40
+sumar_punto("j2")  # juego
 
-        # time.sleep(1)
-        # el j2 gana un punto
-        sumar_punto("j2")  # 15-40
-        _muestra_points_en_matriz()
+#3-2
+sumar_punto("j1")  # 15-0
+sumar_punto("j1")  # 30-0
+sumar_punto("j1")  # 40-0
+sumar_punto("j1")  # juego
 
-        # time.sleep(1)
-        # el j1 gana un punto
-        sumar_punto("j1")  # 30-40
-        _muestra_points_en_matriz()
+#3-3
+sumar_punto("j2")  # 0-15
+sumar_punto("j1")  # 15-15
+sumar_punto("j2")  # 15-30
+sumar_punto("j2")  # 15-40
+sumar_punto("j1")  # 30-40
+sumar_punto("j2")  # juego
 
-        # time.sleep(1)
-        # el j1 gana un punto
-        sumar_punto("j1")  # 40-40
-        _muestra_points_en_matriz()
+#4-3
+sumar_punto("j1")  # 15-0
+sumar_punto("j2")  # 15-15
+sumar_punto("j1")  # 30-15
+sumar_punto("j1")  # 40-15
+sumar_punto("j1")  # juego
 
-        # time.sleep(1)
-        # el j1 gana un punto
-        sumar_punto("j1")  # ad-
-        _muestra_points_en_matriz()
+#4-4
+sumar_punto("j2")  # 0-15
+sumar_punto("j1")  # 15-15
+sumar_punto("j2")  # 15-30
+sumar_punto("j1")  # 30-30
+sumar_punto("j2")  # 30-40
+sumar_punto("j1")  # 40-40
+sumar_punto("j2")  # 40-A
+sumar_punto("j2")  # juego
 
-        # time.sleep(1)
-        # el j1 gana un punto
-        sumar_punto("j1")  # juego
-        # _muestra_points_en_matriz()
+#5-4
+sumar_punto("j2")  # 0-15
+sumar_punto("j2")  # 0-30
+sumar_punto("j1")  # 15-30
+sumar_punto("j1")  # 30-30
+sumar_punto("j1")  # 40-30
+sumar_punto("j1")  # juego
 
-        # time.sleep(1)
-        _muestra_games_en_matriz()
-'''
+#5-5
+sumar_punto("j2")  # 0-15
+sumar_punto("j2")  # 0-30
+sumar_punto("j1")  # 15-30
+sumar_punto("j2")  # 15-40
+sumar_punto("j2")  # juego
 
+#6-5
+sumar_punto("j2")  # 0-15
+sumar_punto("j1")  # 15-15
+sumar_punto("j1")  # 30-15
+sumar_punto("j1")  # 40-15
+sumar_punto("j1")  # juego
 
-for x in range(5):
-    sumar_punto("j1")  # 15-0
+#6-6
+sumar_punto("j2")  # 0-15
+sumar_punto("j1")  # 15-15
+sumar_punto("j2")  # 15-30
+sumar_punto("j2")  # 15-40
+sumar_punto("j2")  # juego
 
-    sumar_punto("j1")  # 30-0
+#TIE BRAKE
+sumar_punto("j1")  # 1-0
+sumar_punto("j1")  # 2-0
+sumar_punto("j1")  # 3-0
+sumar_punto("j1")  # 4-0
+sumar_punto("j1")  # 5-0
+sumar_punto("j2")  # 5-1
+sumar_punto("j2")  # 5-2
+sumar_punto("j1")  # 6-2
+sumar_punto("j1")  # 7-2 SET
 
-    sumar_punto("j1")  # 40-0
-
-    sumar_punto("j1")  # juego
-
-for y in range(5):
-    sumar_punto("j2")  # 15-0
-
-    sumar_punto("j2")  # 30-0
-
-    sumar_punto("j2")  # 40-0
-
-    sumar_punto("j2")  # juego
 
 #_muestra_games_en_matriz()

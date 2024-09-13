@@ -154,8 +154,8 @@ class MarcadorTenis:
                 puntos_j2 = self.puntajes[self.points_jugador2]  # no ha pasado los 40 rige (0,15,30,40)
         else:
             # como es tie brake rige (1,2..hasta ventaja de 2)
-            puntos_j1 = self.tiebreak_points_jugador1
-            puntos_j2 = self.tiebreak_points_jugador2
+            puntos_j1 = str(self.tiebreak_points_jugador1)
+            puntos_j2 = str(self.tiebreak_points_jugador2)
         result = {
             "set_actual": self.set_actual,
             "j1": {
