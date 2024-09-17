@@ -5,6 +5,7 @@ import logica_marcador_tenis as lmt
 import mapeo_numeros_neopixel16x16 as mn
 import time
 import simula_matriz_16x16 as sm
+import jsonUtils as ju
 
 
 def _obtener_marcador():
@@ -22,7 +23,7 @@ def restar_punto(jugador):
     # marcador.actualizar_marcador(jugador, -1)
     suma_resta_punto_full(jugador, -1)
 
-
+"""
 def _obtener_points_jugador(jugador, result):
     # result = _obtener_marcador()
     points_jugador = result[jugador]['points']
@@ -41,7 +42,7 @@ def _obtener_set_actual():
     set_actual = str(result['set_actual'])
     #print("set actual " + set_actual)
     return set_actual
-
+"""
 
 def _devuelve_leds_para_enviar_a_matriz_de_un_punto(digitos, jugador):
     # para j1 los point se mostraran en ti td
@@ -78,6 +79,7 @@ def _devuelve_leds_para_enviar_a_matriz_de_un_game(digitos, jugador, set_actual)
     # ----------
     # |ii|ic|id|
     # ----------
+    set_actual = 3 #SACAR
     pos_x_set_j1 = ["si", "sc", "sd"]
     pos_x_set_j2 = ["ii", "ic", "id"]
 
@@ -109,8 +111,8 @@ def _devuelve_leds_para_enviar_a_matriz_de_un_game(digitos, jugador, set_actual)
 def _muestra_points_en_matriz(show = True):
     if show:
         result = _obtener_marcador()
-        points_j1 = _obtener_points_jugador("j1", result)
-        points_j2 = _obtener_points_jugador("j2", result)
+        points_j1 = ju.obtener_points_jugador("j1", result)
+        points_j2 = ju.obtener_points_jugador("j2", result)
 
         if points_j1 != "":
             led_iz_point_j1, led_de_point_j1 = _devuelve_leds_para_enviar_a_matriz_de_un_punto(points_j1, "j1")
@@ -122,14 +124,14 @@ def _muestra_points_en_matriz(show = True):
         sm.limpia_matriz()
 
 #poner el valor de Show a False si no quiero mostrar los games en el emulador de la matriz led
-def _muestra_games_en_matriz(show = False):
+def _muestra_games_en_matriz(show = True):
     if show:
         result = _obtener_marcador()
-        games_j1 = _obtener_games_jugador("j1", result)
-        games_j2 = _obtener_games_jugador("j2", result)
+        games_j1 = ju.obtener_games_jugador("j1", result)
+        games_j2 = ju.obtener_games_jugador("j2", result)
         if games_j1 == 0 and games_j2 == 0:
             return
-        set_actual = _obtener_set_actual()  # "1"  # Aca sacar set_actual del json
+        set_actual = ju.obtener_set_actual(result)  # "1"  # Aca sacar set_actual del json
         led_iz_game_j1, led_de_game_j1 = _devuelve_leds_para_enviar_a_matriz_de_un_game(games_j1, "j1", set_actual)
         # enciende los leds del digito iz del j1
         sm.pinta_puntos_matriz(led_iz_game_j1, led_de_game_j1)
@@ -148,14 +150,14 @@ def _limpia_matriz():
 
 def suma_resta_punto_full(jugador, SUMA_RESTA=1):
     result_prev = _obtener_marcador()
-    games_j1_prev = _obtener_games_jugador(jugador, result_prev)
-    sets_j1_prev = _obtener_set_actual()
+    games_prev = ju.obtener_games_jugador(jugador, result_prev)
+    sets_prev = ju.obtener_set_actual(result_prev)
     marcador.actualizar_marcador(jugador, SUMA_RESTA)  # actualiza punto
     result_post = _obtener_marcador()
-    games_j1_post = _obtener_games_jugador(jugador, result_post)
-    sets_j1_post = _obtener_set_actual()
+    games_post = ju.obtener_games_jugador(jugador, result_post)
+    sets_post = ju.obtener_set_actual(result_post)
 
-    if games_j1_prev != games_j1_post:
+    if games_prev != games_post:
         _muestra_games_en_matriz() #si quiero que muestre games en matriz pasar True como parametro
     else:
         _muestra_points_en_matriz()
