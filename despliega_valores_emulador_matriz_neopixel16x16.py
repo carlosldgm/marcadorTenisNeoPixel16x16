@@ -1,7 +1,7 @@
 import time
 import mapeo_numeros_neopixel16x16 as mn
 import jsonUtils as ju
-import simula_matriz_16x16 as sm
+import emula_matriz_16x16 as sm
 
 def _devuelve_leds_para_enviar_a_matriz_de_un_punto(digitos, jugador):
     # para j1 los point se mostraran en ti td

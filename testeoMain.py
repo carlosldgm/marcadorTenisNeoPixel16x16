@@ -1,27 +1,18 @@
-# import logica_marcador_tenis as lmt
-from pickle import FALSE
-
 import logica_marcador_tenis as lmt
-import mapeo_numeros_neopixel16x16 as mn
-import time
-import simula_matriz_16x16 as sm
 import jsonUtils as ju
 import despliega_valores_emulador_matriz_neopixel16x16 as dve
 
 
 def _obtener_marcador():
     result = marcador.obtener_marcador()
-    #print(result)
     return result
 
 
 def sumar_punto(jugador):
-    # marcador.actualizar_marcador(jugador)
     suma_resta_punto_full(jugador)
 
 
 def restar_punto(jugador):
-    # marcador.actualizar_marcador(jugador, -1)
     suma_resta_punto_full(jugador, -1)
 
 
