@@ -1,6 +1,7 @@
 # import logica_marcador_tenis as lmt
 import logica_marcador_tenis as lmt
 import mapeo_numeros_neopixel16x16 as mn
+import jsonUtils as ju
 import machine
 import neopixel
 import time
@@ -33,19 +34,19 @@ def restar_punto(jugador):
 
 def suma_resta_punto_full(jugador, SUMA_RESTA=1):
     result_prev = _obtener_marcador()
-    games_j1_prev = _obtener_games_jugador(jugador, result_prev)
-    sets_j1_prev = _obtener_set_actual()
+    games_j1_prev = ju.obtener_games_jugador(jugador, result_prev)
+    sets_j1_prev = ju.obtener_set_actual(result_prev)
     marcador.actualizar_marcador(jugador, SUMA_RESTA)  # actualiza punto
     result_post = _obtener_marcador()
-    games_j1_post = _obtener_games_jugador(jugador, result_post)
-    sets_j1_post = _obtener_set_actual()
+    games_j1_post = ju.obtener_games_jugador(jugador, result_post)
+    sets_j1_post = ju.obtener_set_actual(result_post)
 
     if games_j1_prev != games_j1_post:
         _muestra_games_en_matriz()
     else:
         _muestra_points_en_matriz()
 
-
+"""
 def _obtener_set_actual():
     result = _obtener_marcador()
     set_actual = str(result['set_actual'])
@@ -62,7 +63,7 @@ def _obtener_points_jugador(jugador, result):
 def _obtener_games_jugador(jugador, result):
     games_jugador = result[jugador]['games']
     return games_jugador
-
+"""
 
 def _devuelve_leds_para_enviar_a_matriz_de_un_punto(digitos, jugador):
     # para j1 los point se mostraran en ti td
@@ -130,8 +131,8 @@ def _devuelve_leds_para_enviar_a_matriz_de_un_game(digitos, jugador, set_actual)
 def _muestra_points_en_matriz():
     _limpia_matriz()
     result = _obtener_marcador_jugadores()
-    points_j1 = _obtener_points_jugador("j1", result)
-    points_j2 = _obtener_points_jugador("j2", result)
+    points_j1 = ju.obtener_points_jugador("j1", result)
+    points_j2 = ju.obtener_points_jugador("j2", result)
 
     if points_j1 != "":
         led_iz_point_j1, led_de_point_j1 = _devuelve_leds_para_enviar_a_matriz_de_un_punto(points_j1, "j1")
@@ -157,11 +158,11 @@ def _muestra_games_en_matriz():
     _limpia_matriz()
     # pixels = neopixel.NeoPixel(machine.Pin(4), 255)
     result = _obtener_marcador_jugadores()
-    games_j1 = _obtener_games_jugador("j1", result)
-    games_j2 = _obtener_games_jugador("j2", result)
+    games_j1 = ju.obtener_games_jugador("j1", result)
+    games_j2 = ju.obtener_games_jugador("j2", result)
     if games_j1 == 0 and games_j2 == 0:
         return
-    set_actual = _obtener_set_actual()
+    set_actual = ju.obtener_set_actual(result)
     led_iz_game_j1, led_de_game_j1 = _devuelve_leds_para_enviar_a_matriz_de_un_game(games_j1, "j1", set_actual)
     # enciende los leds del digito iz del j1
     for i in led_iz_game_j1:
@@ -197,13 +198,13 @@ def _obtener_marcador():
 def resetear_marcador():
     marcador.resetear_marcador()
 
-
+"""
 def _obtener_set_actual():
     result = _obtener_marcador()
     set_actual = str(result['set_actual'])
     print("set actual " + set_actual)
     return set_actual
-
+"""
 
 # -----------Logica Principal-------------------
 _muestra_points_en_matriz()
