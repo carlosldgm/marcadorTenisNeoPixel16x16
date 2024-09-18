@@ -1,6 +1,6 @@
 import logica_marcador_tenis as lmt
 import jsonUtils as ju
-import despliega_valores_emulador_matriz_neopixel16x16 as dve
+import despliega_valores_emulador_neopixel16x16 as dve
 
 
 def _obtener_marcador():
