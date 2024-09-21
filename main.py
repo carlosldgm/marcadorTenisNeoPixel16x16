@@ -46,7 +46,7 @@ def resetear_marcador():
 
 
 # -----------Logica Principal-------------------
-#Crea una instancia de la clase que maneja la logica del marcador
+#Crea una instancia de la clase MarcadorTenis que maneja la logica del marcador
 marcador = lmt.MarcadorTenis()
 result = _obtener_marcador()
 dvm.muestra_points_en_matriz(result)
@@ -57,36 +57,37 @@ led = Pin(2, Pin.OUT)
 
 
 def on_rx():
-    try:
-        rx_recibe = uart.read().decode().strip()
-        uart.write("EspBot dice:" + str(rx_recibe) + "\n")
-        print(rx_recibe)
+    if uart.any():  # Verifica si hay datos en el buffer
+        try:
+            rx_recibe = uart.read().decode().strip()
+            uart.write("EspBot dice:" + str(rx_recibe) + "\n")
+            print(rx_recibe)
 
-        if rx_recibe == "!B516":
-            led.value(1)
-            sumar_punto("j1")
+            if rx_recibe == "!B516": #flecha arriba
+                led.value(1)
+                sumar_punto("j1")
 
-        if rx_recibe == "!B318":
-            led.value(0)
-            restar_punto("j1")
+            if rx_recibe == "!B615": #flecha abajo
+                led.value(0)
+                restar_punto("j1")
 
-        if rx_recibe == "!B219":
-            led.value(1)
-            sumar_punto("j2")
+            if rx_recibe == "!B219": #2 
+                led.value(1)
+                sumar_punto("j2")
 
-        if rx_recibe == "!B417":
-            led.value(0)
-            restar_punto("j2")
+            if rx_recibe == "!B417": #4
+                led.value(0)
+                restar_punto("j2")
 
-        if rx_recibe == "!B615":
-            led.value(0)
-            resetear_marcador()
+            if rx_recibe == "!B714": #flecha izq
+                led.value(0)
+                resetear_marcador()
 
-        dvm.muestra_points_en_matriz(result)
+            #dvm.muestra_points_en_matriz(result)
 
 
-    except Exception as e:
-        print("Error al procesar datos: {}".format(e))
+        except Exception as e:
+            print("Error al procesar datos: {}".format(e))
 
 
 try:
@@ -99,3 +100,4 @@ except bluetooth.BluetoothError as be:
     print("Error Bluetooth: {}".format(be))
 except Exception as e:
     print("Error general: {}".format(e))
+

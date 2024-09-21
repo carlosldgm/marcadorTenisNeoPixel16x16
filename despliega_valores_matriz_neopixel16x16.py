@@ -93,12 +93,12 @@ def muestra_points_en_matriz(result):
         for i in led_de_point_j2:
             pixels[i] = (0, 255, 0)
     pixels.write()
-    time.sleep(0.8)  # Ajusta el tiempo de espera si es necesario
+#    time.sleep(0.8)  # Ajusta el tiempo de espera si es necesario
 
 
 def muestra_games_en_matriz(result):
     _limpia_matriz()
-    #result = _obtener_marcador_jugadores()
+
     games_j1 = ju.obtener_games_jugador("j1", result)
     games_j2 = ju.obtener_games_jugador("j2", result)
     if games_j1 == 0 and games_j2 == 0:
@@ -122,8 +122,8 @@ def muestra_games_en_matriz(result):
     for i in led_de_game_j2:
         pixels[i] = (0, 255, 0)
         pixels.write()
-    time.sleep(3)
-    _limpia_matriz()
+#    time.sleep(3)
+#    _limpia_matriz()
 
 
 def _limpia_matriz():

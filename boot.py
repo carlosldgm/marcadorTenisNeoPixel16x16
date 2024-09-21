@@ -1,3 +1,4 @@
+"""
 try:
   import usocket as socket
 except:
@@ -5,6 +6,7 @@ except:
 
 from machine import Pin
 import network
+"""
 
 import esp
 esp.osdebug(None)
@@ -12,6 +14,7 @@ esp.osdebug(None)
 import gc
 gc.collect()
 
+"""
 ssid = 'casita-verde-wifi'
 password = 'Cv13821382'
 
@@ -27,3 +30,4 @@ print('Connection successful')
 print(station.ifconfig())
 
 led = Pin(2, Pin.OUT)
+"""
