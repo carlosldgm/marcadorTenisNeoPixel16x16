@@ -22,15 +22,24 @@ def restar_punto(jugador):
 
 
 def suma_resta_punto_full(jugador, SUMA_RESTA=1):
+    """
+    obtiene el marcador para poder sacar el game y set antes de sumar el nuevo punto y poder saber despues
+    si cambio el valor del set luego de sumar el ultimo punto que debe mostrar el marcador de sets y no de games
+    """
+    #obtiene el marcador antes de sumar un punto
     result_prev = _obtener_marcador()
-    games_j1_prev = ju.obtener_games_jugador(jugador, result_prev)
-    sets_j1_prev = ju.obtener_set_actual(result_prev)
-    marcador.actualizar_marcador(jugador, SUMA_RESTA)  # actualiza punto
+    point_prev = ju.obtener_points_jugador(jugador, result_prev)
+    games_prev = ju.obtener_games_jugador(jugador, result_prev)
+    sets_prev = ju.obtener_set_actual(result_prev)
+    if not (point_prev == "0" and SUMA_RESTA == -1):
+        marcador.actualizar_marcador(jugador, SUMA_RESTA)
+    #obtiene el marcador despues de sumar el punto
     result_post = _obtener_marcador()
-    games_j1_post = ju.obtener_games_jugador(jugador, result_post)
-    sets_j1_post = ju.obtener_set_actual(result_post)
+    point_post = ju.obtener_points_jugador(jugador, result_post)
+    games_post = ju.obtener_games_jugador(jugador, result_post)
+    sets_post = ju.obtener_set_actual(result_post)
 
-    if games_j1_prev != games_j1_post:
+    if (games_prev != games_post) or (sets_prev != sets_post): #hay que hcer una funcion que muestre todos los games de cada set
         dvm.muestra_games_en_matriz(result_post)
     else:
         dvm.muestra_points_en_matriz(result_post)
@@ -55,7 +64,7 @@ dvm.muestra_points_en_matriz(result)
 name = "Marcador-Tenis"
 led = Pin(2, Pin.OUT)
 
-
+#Beauty-R1 con MAC BEE5379B-1E05-2F6B-93C9-D0924BEB2C27
 def on_rx():
     if uart.any():  # Verifica si hay datos en el buffer
         try:
@@ -100,4 +109,5 @@ except bluetooth.BluetoothError as be:
     print("Error Bluetooth: {}".format(be))
 except Exception as e:
     print("Error general: {}".format(e))
+
 

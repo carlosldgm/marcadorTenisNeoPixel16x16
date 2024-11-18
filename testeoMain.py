@@ -25,8 +25,9 @@ def suma_resta_punto_full(jugador, SUMA_RESTA=1):
     games_post = ju.obtener_games_jugador(jugador, result_post)
     sets_post = ju.obtener_set_actual(result_post)
 
-    if games_prev != games_post:
-        dve.muestra_games_en_matriz(result_post) #si quiero que muestre games en matriz pasar True como parametro
+    if sets_prev != sets_post or games_prev != games_post:
+        #dve.muestra_games_en_matriz(result_post) #si quiero que muestre games en matriz pasar True como parametro
+        dve.muestra_games_en_matriz_con_sets_anteriores(result_post)
     else:
         dve.muestra_points_en_matriz(result_post)
 
@@ -36,109 +37,126 @@ def suma_resta_punto_full(jugador, SUMA_RESTA=1):
 def resetear_marcador():
     marcador.resetear_marcador()
 
+def set_gana_j1():
+    for i in range(18):
+        sumar_punto("j1")  # 15-0
+        sumar_punto("j1")  # 30-0
+        sumar_punto("j1")  # 40-0
+        sumar_punto("j1")  # juego
+
+
+
+
+
+def set_con_tb():
+    # 1-0
+    sumar_punto("j1")  # 15-0
+    sumar_punto("j1")  # 30-0
+    sumar_punto("j1")  # 40-0
+    sumar_punto("j1")  # juego
+
+    # 1-1
+    sumar_punto("j2")  # 0-15
+    sumar_punto("j2")  # 0-30
+    sumar_punto("j2")  # 0-40
+    sumar_punto("j1")  # 15-40
+    sumar_punto("j2")  # juego
+
+    # 2-1
+    sumar_punto("j2")  # 0-15
+    sumar_punto("j2")  # 0-30
+    sumar_punto("j1")  # 15-30
+    sumar_punto("j1")  # 30-30
+    sumar_punto("j1")  # 40-30
+    sumar_punto("j1")  # juego
+
+    # 2-2
+    sumar_punto("j2")  # 0-15
+    sumar_punto("j2")  # 0-30
+    sumar_punto("j2")  # 0-40
+    sumar_punto("j1")  # 15-40
+    sumar_punto("j2")  # juego
+
+    # 3-2
+    sumar_punto("j1")  # 15-0
+    sumar_punto("j1")  # 30-0
+    sumar_punto("j1")  # 40-0
+    sumar_punto("j1")  # juego
+
+    # 3-3
+    sumar_punto("j2")  # 0-15
+    sumar_punto("j1")  # 15-15
+    sumar_punto("j2")  # 15-30
+    sumar_punto("j2")  # 15-40
+    sumar_punto("j1")  # 30-40
+    sumar_punto("j2")  # juego
+
+    # 4-3
+    sumar_punto("j1")  # 15-0
+    sumar_punto("j2")  # 15-15
+    sumar_punto("j1")  # 30-15
+    sumar_punto("j1")  # 40-15
+    sumar_punto("j1")  # juego
+
+    # 4-4
+    sumar_punto("j2")  # 0-15
+    sumar_punto("j1")  # 15-15
+    sumar_punto("j2")  # 15-30
+    sumar_punto("j1")  # 30-30
+    sumar_punto("j2")  # 30-40
+    sumar_punto("j1")  # 40-40
+    sumar_punto("j2")  # 40-A
+    sumar_punto("j2")  # juego
+
+    # 5-4
+    sumar_punto("j2")  # 0-15
+    sumar_punto("j2")  # 0-30
+    sumar_punto("j1")  # 15-30
+    sumar_punto("j1")  # 30-30
+    sumar_punto("j1")  # 40-30
+    sumar_punto("j1")  # juego
+
+    # 5-5
+    sumar_punto("j2")  # 0-15
+    sumar_punto("j2")  # 0-30
+    sumar_punto("j1")  # 15-30
+    sumar_punto("j2")  # 15-40
+    sumar_punto("j2")  # juego
+
+    # 6-5
+    sumar_punto("j2")  # 0-15
+    sumar_punto("j1")  # 15-15
+    sumar_punto("j1")  # 30-15
+    sumar_punto("j1")  # 40-15
+    sumar_punto("j1")  # juego
+
+    # 6-6
+    sumar_punto("j2")  # 0-15
+    sumar_punto("j1")  # 15-15
+    sumar_punto("j2")  # 15-30
+    sumar_punto("j2")  # 15-40
+    sumar_punto("j2")  # juego
+
+    # TIE BRAKE
+    sumar_punto("j1")  # 1-0
+    sumar_punto("j1")  # 2-0
+    sumar_punto("j1")  # 3-0
+    sumar_punto("j1")  # 4-0
+    sumar_punto("j1")  # 5-0
+    sumar_punto("j2")  # 5-1
+    sumar_punto("j2")  # 5-2
+    sumar_punto("j1")  # 6-2
+    sumar_punto("j1")  # 7-2 SET
+
 # -----------PRUEBA PARTIDO-------------------
 marcador = lmt.MarcadorTenis()
 result = _obtener_marcador()
 dve.muestra_points_en_matriz(result,False)
-
-#1-0
-sumar_punto("j1")  # 15-0
-sumar_punto("j1")  # 30-0
-sumar_punto("j1")  # 40-0
-sumar_punto("j1")  # juego
-
-#1-1
-sumar_punto("j2")  # 0-15
-sumar_punto("j2")  # 0-30
-sumar_punto("j2")  # 0-40
-sumar_punto("j1")  # 15-40
-sumar_punto("j2")  # juego
-
-#2-1
-sumar_punto("j2")  # 0-15
-sumar_punto("j2")  # 0-30
-sumar_punto("j1")  # 15-30
-sumar_punto("j1")  # 30-30
-sumar_punto("j1")  # 40-30
-sumar_punto("j1")  # juego
-
-#2-2
-sumar_punto("j2")  # 0-15
-sumar_punto("j2")  # 0-30
-sumar_punto("j2")  # 0-40
-sumar_punto("j1")  # 15-40
-sumar_punto("j2")  # juego
-
-#3-2
-sumar_punto("j1")  # 15-0
-sumar_punto("j1")  # 30-0
-sumar_punto("j1")  # 40-0
-sumar_punto("j1")  # juego
-
-#3-3
-sumar_punto("j2")  # 0-15
-sumar_punto("j1")  # 15-15
-sumar_punto("j2")  # 15-30
-sumar_punto("j2")  # 15-40
-sumar_punto("j1")  # 30-40
-sumar_punto("j2")  # juego
-
-#4-3
-sumar_punto("j1")  # 15-0
-sumar_punto("j2")  # 15-15
-sumar_punto("j1")  # 30-15
-sumar_punto("j1")  # 40-15
-sumar_punto("j1")  # juego
-
-#4-4
-sumar_punto("j2")  # 0-15
-sumar_punto("j1")  # 15-15
-sumar_punto("j2")  # 15-30
-sumar_punto("j1")  # 30-30
-sumar_punto("j2")  # 30-40
-sumar_punto("j1")  # 40-40
-sumar_punto("j2")  # 40-A
-sumar_punto("j2")  # juego
-
-#5-4
-sumar_punto("j2")  # 0-15
-sumar_punto("j2")  # 0-30
-sumar_punto("j1")  # 15-30
-sumar_punto("j1")  # 30-30
-sumar_punto("j1")  # 40-30
-sumar_punto("j1")  # juego
-
-#5-5
-sumar_punto("j2")  # 0-15
-sumar_punto("j2")  # 0-30
-sumar_punto("j1")  # 15-30
-sumar_punto("j2")  # 15-40
-sumar_punto("j2")  # juego
-
-#6-5
-sumar_punto("j2")  # 0-15
-sumar_punto("j1")  # 15-15
-sumar_punto("j1")  # 30-15
-sumar_punto("j1")  # 40-15
-sumar_punto("j1")  # juego
-
-#6-6
-sumar_punto("j2")  # 0-15
-sumar_punto("j1")  # 15-15
-sumar_punto("j2")  # 15-30
-sumar_punto("j2")  # 15-40
-sumar_punto("j2")  # juego
-
-#TIE BRAKE
-sumar_punto("j1")  # 1-0
-sumar_punto("j1")  # 2-0
-sumar_punto("j1")  # 3-0
-sumar_punto("j1")  # 4-0
-sumar_punto("j1")  # 5-0
-sumar_punto("j2")  # 5-1
-sumar_punto("j2")  # 5-2
-sumar_punto("j1")  # 6-2
-sumar_punto("j1")  # 7-2 SET
-
+"""
+for i in range (2):
+    set_gana_j1()
+"""
+#set_con_tb()
+set_gana_j1()
 
 #_muestra_games_en_matriz()

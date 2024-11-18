@@ -114,7 +114,6 @@ def muestra_games_en_matriz(result):
         pixels.write()
 
     led_iz_game_j2, led_de_game_j2 = _devuelve_leds_para_enviar_a_matriz_de_un_game(games_j2, "j2", set_actual)
-    # aqui habria que encender esos leds, falta parte neopixel
     for i in led_iz_game_j2:
         pixels[i] = (0, 255, 0)
         pixels.write()

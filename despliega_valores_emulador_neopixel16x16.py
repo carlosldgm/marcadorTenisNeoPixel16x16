@@ -1,4 +1,6 @@
 import time
+from traceback import format_exception
+
 import mapeo_numeros_neopixel16x16 as mn
 import jsonUtils as ju
 import emula_matriz_16x16 as sm
@@ -90,6 +92,8 @@ def muestra_games_en_matriz(result, show = True):
         if games_j1 == 0 and games_j2 == 0:
             return
         set_actual = ju.obtener_set_actual(result)
+
+
         led_iz_game_j1, led_de_game_j1 = _devuelve_leds_para_enviar_a_matriz_de_un_game(games_j1, "j1", set_actual)
         # enciende los leds del digito iz del j1
         sm.pinta_puntos_matriz(led_iz_game_j1, led_de_game_j1)
@@ -98,9 +102,66 @@ def muestra_games_en_matriz(result, show = True):
         led_iz_game_j2, led_de_game_j2 = _devuelve_leds_para_enviar_a_matriz_de_un_game(games_j2, "j2", set_actual)
         # enciende los leds del digito iz del j2
         sm.pinta_puntos_matriz(led_iz_game_j2, led_de_game_j2)
+
         time.sleep(1)
         sm.limpia_matriz()
 
+
+
+def muestra_games_en_matriz_con_sets_anteriores(result, show = True):
+    if show:
+        set_actual = ju.obtener_set_actual(result)
+        if set_actual == "2":
+            fin_set1_j1 = ju.obtener_games_final_set_jugador("j1", result, 1)
+            fin_set1_j2 = ju.obtener_games_final_set_jugador("j2", result, 1)
+            led_iz_game_j1, led_de_game_j1 = _devuelve_leds_para_enviar_a_matriz_de_un_game(fin_set1_j1, "j1", 1)
+            sm.pinta_puntos_matriz(led_iz_game_j1, led_de_game_j1)
+
+            led_iz_game_j2, led_de_game_j2 = _devuelve_leds_para_enviar_a_matriz_de_un_game(fin_set1_j2, "j2", 1)
+            sm.pinta_puntos_matriz(led_iz_game_j2, led_de_game_j2)
+        elif set_actual == "3":
+            fin_set2_j1 = ju.obtener_games_final_set_jugador("j1", result, 2)
+            fin_set2_j2 = ju.obtener_games_final_set_jugador("j2", result, 2)
+            led_iz_game_j1, led_de_game_j1 = _devuelve_leds_para_enviar_a_matriz_de_un_game(fin_set2_j1, "j1", 2)
+            sm.pinta_puntos_matriz(led_iz_game_j1, led_de_game_j1)
+
+            led_iz_game_j2, led_de_game_j2 = _devuelve_leds_para_enviar_a_matriz_de_un_game(fin_set2_j2, "j2", 2)
+            sm.pinta_puntos_matriz(led_iz_game_j2, led_de_game_j2)
+
+        games_j1 = ju.obtener_games_jugador("j1", result)
+        games_j2 = ju.obtener_games_jugador("j2", result)
+        if games_j1 == 0 and games_j2 == 0:
+            return
+
+        led_iz_game_j1, led_de_game_j1 = _devuelve_leds_para_enviar_a_matriz_de_un_game(games_j1, "j1", set_actual)
+        sm.pinta_puntos_matriz(led_iz_game_j1, led_de_game_j1)
+
+        led_iz_game_j2, led_de_game_j2 = _devuelve_leds_para_enviar_a_matriz_de_un_game(games_j2, "j2", set_actual)
+        sm.pinta_puntos_matriz(led_iz_game_j2, led_de_game_j2)
+
+        time.sleep(1)
+        sm.limpia_matriz()
+
+
+"""
+def muestra_sets_en_matriz(result, show = True):
+    if show:
+        set_actual = ju.obtener_set_actual(result)
+        for i in range(int(set_actual)):
+            games_j1 = ju.obtener_games_final_set_jugador("j1", result, i+1)
+            games_j2 = ju.obtener_games_final_set_jugador("j2", result, i+1)
+            if not(games_j1 == "0" and games_j2 == "0"):
+                led_iz_game_j1, led_de_game_j1 = _devuelve_leds_para_enviar_a_matriz_de_un_game(games_j1, "j1", i+1)
+                # enciende los leds del digito iz del j1
+                sm.pinta_puntos_matriz(led_iz_game_j1, led_de_game_j1)
+
+                led_iz_game_j2, led_de_game_j2 = _devuelve_leds_para_enviar_a_matriz_de_un_game(games_j2, "j2", i+1)
+                # enciende los leds del digito iz del j2
+                sm.pinta_puntos_matriz(led_iz_game_j2, led_de_game_j2)
+
+        time.sleep(1)
+        sm.limpia_matriz()
+"""
 
 def _limpia_matriz():
     sm.limpia_matriz()

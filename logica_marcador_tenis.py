@@ -15,6 +15,12 @@ class MarcadorTenis:
         self.tiebrake_end = False
         self.set_actual = 1
         self.puntajes = ["0", "15", "30", "40", "AD"]
+        self.fin_set1_j1 = 0
+        self.fin_set1_j2 = 0
+        self.fin_set2_j1 = 0
+        self.fin_set2_j2 = 0
+        self.fin_set3_j1 = 0
+        self.fin_set3_j2 = 0
 
     def actualizar_marcador(self, ganador_punto,SUMA_RESTA_PUNTO=1):
         if self.tiebreak:
@@ -98,10 +104,28 @@ class MarcadorTenis:
     def finalizar_set(self, ganador_punto):
         if self.games_jugador1 > self.games_jugador2:
             self.sets_jugador1 += 1
+            if(self.games_jugador1 > 6): #esto es para que el tablero no se desborde con nros mayores a 10
+                self.games_jugador1 = "7"
+                self.games_jugador2 = "5"
             print("¡El jugador 1 gana el set!")
         else:
             self.sets_jugador2 += 1
+            if(self.games_jugador2 > 6):
+                self.games_jugador1 = "5"
+                self.games_jugador2 = "7"
             print("¡El jugador 2 gana el set!")
+
+        #guarda los games de j1 y j2 de como termino el set
+        if self.set_actual == 1:
+            self.fin_set1_j1 = self.games_jugador1
+            self.fin_set1_j2 = self.games_jugador2
+        elif self.set_actual == 2:
+            self.fin_set2_j1 = self.games_jugador1
+            self.fin_set2_j2 = self.games_jugador2
+        elif self.set_actual == 3:
+            self.fin_set3_j1 = self.games_jugador1
+            self.fin_set3_j2 = self.games_jugador2
+
 
         #print(f"Sets: {self.sets_jugador1} - {self.sets_jugador2}")
         print("Sets: {} - {}".format(self.sets_jugador1, self.sets_jugador2))     
@@ -158,6 +182,12 @@ class MarcadorTenis:
             puntos_j2 = str(self.tiebreak_points_jugador2)
         result = {
             "set_actual": self.set_actual,
+            "fin_set1_j1": self.fin_set1_j1,
+            "fin_set1_j2": self.fin_set1_j2,
+            "fin_set2_j1": self.fin_set2_j1,
+            "fin_set2_j2": self.fin_set2_j2,
+            "fin_set3_j1": self.fin_set3_j1,
+            "fin_set3_j2": self.fin_set3_j2,
             "j1": {
                 "points": puntos_j1,
                 "games": self.games_jugador1,

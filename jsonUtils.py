@@ -16,3 +16,8 @@ def obtener_set_actual(result):
     set_actual = str(result['set_actual'])
     #print("set actual " + set_actual)
     return set_actual
+
+def obtener_games_final_set_jugador(jugador, result, set):
+    str_busq = 'fin_set' + str(set) + '_' + str(jugador)
+    games_final_set = str(result[str_busq])
+    return games_final_set
